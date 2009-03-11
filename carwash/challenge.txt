@@ -1,0 +1,105 @@
+==========================
+Here are the 4 emails Blaine sent. Read and code them ONE AT A TIME to 
+simulate a "real world" requirements scenario.  :)   -jhannah
+
+http://www.jargon.net/jargonfile/f/feepingcreaturism.html
+==========================
+
+
+ From: Blaine Buxton <altodorado@blainebuxton.com>
+ Subject: August 7: Groovy Coding: Car Wash
+ Sent: 12 Jul '07 00:50
+
+ Hello,
+ I thought I would do things a little differently next month and have a small design group session. I came up with some "customer requirements" that will be released in four rounds. I want this to inspire discussion so if you come up with a novel or clever solution. Please share it! Anything language is welcome to join in on the fun, so if Groovy is not your bag, please do it in the language of your choice. I would like for us to compare the different ways of doing and compare out thought processes. I think this will be more fun if everyone gets involved.
+
+ I made the first round simple (and in fact all of them are simple). I just wanted something easy enough to code, but interesting. The rounds following the first will be customer changes/additions to our requirements. If you get yourself in a corner because of changes, I would love to know what they were and how you overcame them. I think this will be an extraordinary learning experience and I hope it is successful!
+
+ Customer Requirements:
+ Frobozz Gas and Go has installed a brand new automated car wash. There's just one problem. The hardware that runs the car wash has no software to run it. Basically, it's a coin-operated box that takes the customer's money and sends commands to the machine that washes the car. Frobozz has called us to design this software and this is the list of requirements:
+ 1. Machine Takes Cash/Gives Change
+ 2. There are 3 packages for the wash and their prices are:
+         Simple $5.00 (Action Sent To Wash Machine: Wash)
+         Clean $6.00 (Actions Sent To Wash Machine: Wash, Soak)
+         Stupendous $7.00 (Wash, Soak, Wax)
+ And that's it.
+ The interface for the washing machine is this (Specified in Java):
+ public interface CarWashMachine {
+ public void performWash();
+ public void performSoak();
+ public void performWax();
+ }
+
+ You are free to implement any interface you want for the machine that gives/takes money. You are also free to connect the CarWashMachine to anything you want. As long as the customer pays and gets the wash. Frobozz doesn't care.
+
+ These requirements are quite ambigious and Frobozz is a busy man. Good luck everyone!
+
+ I have a meeting with Frobozz next week to discuss anything that might have been missed.
+ --
+ Blaine Buxton
+ Simplicity Synthesist
+ http://blog.blainebuxton.com
+
+
+
+
+ From: Blaine Buxton <altodorado@blainebuxton.com>
+ Subject: Requirements Part 2 for August 7: Groovy Coding: Car Wash
+ Sent: 16 Jul '07 23:53
+
+ Hello,
+ I talked with Frobozz Gas and Go today. They have made some requirement changes that they felt were needed.
+ 1. They forgot to tell us to make sure to have the interface notify the user when the car wash is not functioning. This means there is a new method on CarWashMachine (boolean isWorking()).
+ 2. They visited another car wash and loved the idea of using tokens in addition to money. They think this will be their competitive advantage since the other washer only accepts coins. They devised the following system: 1 coin = simple package; 2 = clean package; 3 = stupendous package. Our interface still has to accept money as well.
+
+ I will be talking with them again next week. Good luck to everyone and I can't wait to see what you come up with! I've included the original requirements at the bottom of the email.
+ --
+ Blaine Buxton
+ Simplicity Synthesist
+ http://blog.blainebuxton.com
+
+
+
+
+ From: Blaine Buxton <altodorado@blainebuxton.com>
+ Subject: Requirements Part 3 for August 7: Groovy Coding: Car Wash
+ Sent: 25 Jul '07 03:25
+
+ Car Wash Round 3
+ Well, well, well, I met with the customer this week and Frobozz has been busy learning about their new car wash machine. One of the things that they learned was that it has touchless feature, so they want to have  3 more plans priced as follows: Simple Touchless $6.00, Clean Touchless $7.00, and Stupendous Touchless $8.00.
+
+ I asked about the coins and they are worth the same as the plans for. So, 1 coin=simple touchless, 2 coins=clean touchless, and 3 coins=stupendous touchless. I inquired about that they are the same coin amounts and they said the only way to get coins was by paying for gas or going inside. They wanted to reward those customers.
+
+ Remember, touchless is only a different kind of wash. It's one more feature on the machine and the plans only call touchless instead of the regular wash.
+
+ As I was walking out the door, I inquired about what happens if the car wash machine is not working. They replied, "Tell the user it's broken, duh!" But, after thinking about their rude answer, they told me that you can inquire from the car wash machine if its operational or not, and to simply the tell the user to come back later. Return any coins or money they have deposited.
+
+ I have put the first two round below for anyone coming in late. Good luck!
+ --
+ Blaine Buxton
+ Simplicity Synthesist
+ http://blog.blainebuxton.com
+
+
+
+From: "Blaine Buxton" <altodorado@blainebuxton.com>
+Date: July 31, 2007 7:57:08 PM CDT
+To: "dynamic_omaha@blainebuxton.com" <dynamic_omaha@blainebuxton.com>
+Subject: [dynamic_omaha] Requirements Part 4 for August 7: Groovy Coding: Car Wash
+Reply-To: "Blaine Buxton" <altodorado@blainebuxton.com>
+
+It's getting close to deployment and the customers called me all worried that they had yet again forgotten something. I told them no worries that we have plenty of time and a week should be enough time for any last minute changes. 
+
+The only new requirement they wanted was for the user to make appointments for the wash. They were worried that during peak times, customers might turn away. So, they want a scheduling system where the user can after they have purchased their plan, they can schedule an appointment for the actual wash for up to five days in advance. They can then come back during their appointment time and receive the wash.
+
+This brings up some interesting possibilities. They told me that the user can redeem their wash at any time whether or not they have an appointment. I pointed out that they what they wanted was just to have the user buy the wash, but redeem it later and that appointments were not necessary. After a few dirty looks, they came back and agreed. So, the only new change is to be able to give the user a code when they make an appointment so that they can redeem it later.
+
+I mentioned using the coins from earlier instead of a code, but the users refused and want a code for the appointment because they want to track how many customers pre-pay and come back later.
+
+I can't wait to see what we come up with to please the customer! As always, if you've missed any of the installments, I have placed them below. See you all next week.
+--
+Blaine Buxton
+Simplicity Synthesist
+http://blog.blainebuxton.com
+
+

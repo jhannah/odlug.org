@@ -1,0 +1,9 @@
+require 'rake/clean'
+
+CLEAN.include "**/*.beam"
+
+task :default => [:erl]
+
+task :erl do
+  sh 'erl -make'
+end

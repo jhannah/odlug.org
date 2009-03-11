@@ -1,0 +1,28 @@
+-record(amount, {money=0.00, tokens=0}).
+-record(package, {id, name, cost=#amount{}, actions}).
+
+-define(PACKAGES,
+        [#package{id=simple,
+                  name="Simple",
+                  cost=#amount{money=5.00, tokens=1},
+                  actions=[wash]},
+         #package{id=clean,
+                  name="Clean",
+                  cost=#amount{money=6.00, tokens=2},
+                  actions=[wash, soak]},
+         #package{id=stupendous,
+                  name="Stupendous",
+                  cost=#amount{money=7.00, tokens=3},
+                  actions=[wash, soak, wax]},
+         #package{id={simple, touchless},
+                  name="Simple Touchless",
+                  cost=#amount{money=6.00, tokens=1},
+                  actions=[touchless]},
+         #package{id={clean, touchless},
+                  name="Clean Touchless",
+                  cost=#amount{money=7.00, tokens=2},
+                  actions=[touchless, soak]},
+         #package{id={stupendous, touchless},
+                  name="Stupendous Touchless",
+                  cost=#amount{money=8.00, tokens=3},
+                  actions=[touchless, soak, wax]}]).

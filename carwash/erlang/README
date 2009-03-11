@@ -1,0 +1,10 @@
+In order to run the code in here the ebin directory will need to be on your
+Erlang search path.  To do that, put a file called .erlang in your home
+directory with the following contents:
+
+  io:format("consulting .erlang in ~p~n", [element(2,file:get_cwd())]).
+  code:add_pathz("/path/to/carwash/erlang/ebin").
+
+The Rakefile just runs "erl -run make" which uses the Emakefile to build the
+Erlang source.  If you don't have Ruby, you should get it, but if you can't you
+can just run the command on its own.
