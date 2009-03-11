@@ -25,8 +25,6 @@ Cage types:
 Rules
 ---------------
 
-All reservations are for an entire day.
-
 You can stick different customers' pets together in the same LARGE cage. They won't mind.
 
 BUT you can NEVER stick a dog and a cat in the same cage.
@@ -47,7 +45,7 @@ can not set the prices or haggle.
 
 Here's the demand:
 
-Customer ID|TOTAL they offer to pay|Dates they require boarding|Pet|Pet|Pet...
+Customer ID|TOTAL they offer to pay|Date(s) they require boarding|Pet|Pet|Pet...
 1|174.09|20090617-20090618|71 pound DOG|74 pound DOG|60 pound DOG|
 2|55.17|20090615-20090617|70 pound CAT|64 pound DOG|
 3|76.98|20090615-20090618|61 pound CAT|68 pound CAT|
