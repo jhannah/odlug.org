@@ -38,7 +38,7 @@ Customer Requirements:
  public void performWax();
  }
 """
-__revision__ = "$Id: carwash_1.py 5 2007-08-19 03:47:22Z  $"  #for documentation
+__revision__ = "$Id: carwash_1.py 7 2007-08-19 03:47:22Z  $"  #for documentation
 
 class CarWashMachine(object):
     """ interface to the CarWashMachine"""

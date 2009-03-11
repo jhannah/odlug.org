@@ -47,7 +47,7 @@ washer only accepts coins. They devised the following system:
 Our interface still has to accept money as well.
 
 """
-__revision__ = "$Id: carwash_2.py 6 2007-08-19 04:37:53Z  $"  #for documentation
+__revision__ = "$Id: carwash_2.py 8 2007-08-19 04:37:53Z  $"  #for documentation
 
 class CarWashMachine(object):
     """ interface to the CarWashMachine"""

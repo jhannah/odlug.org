@@ -57,8 +57,18 @@ if the car wash machine is not working. you can inquire from the car wash
 machine if its operational or not, and to simply the tell the user to come 
 back later.  Return any coins or money they have deposited.
 
+schedule an appointment for the actual wash for up to five days in advance.
+user can redeem their wash at any time whether or not they have an appointment.
+give the user a code when they make an appointment so that they can redeem it 
+later not necessary to track appoinment, just the code and it's value
 """
-__revision__ = "$Id: carwash_3.py 9 2007-08-19 05:00:34Z  $"  #for documentation
+
+import pickle
+import random
+
+__revision__ = "$Id: carwash_4.py 10 2007-08-21 02:49:17Z  $"  #for documentation
+
+DB_TICKET = "ticket.db" #simple db mechanism for tickets
 
 class CarWashMachine(object):
     """ interface to the CarWashMachine"""
@@ -165,23 +175,155 @@ class CoinBox(object):
             return True
         else:
             return False
-
-def usermenu(current_dollars, current_coins):
+    
+def usermenu():
     """present user interface, return users requested Action"""
-    print "Your balance: $%i | %i coins" % (current_dollars, current_coins)
+    print "Your balance: $%i | %i coins" % (COINBOX.dollars, COINBOX.coins)
     print
-    print "[i] insert dollar"
     print "[c] insert coin"
+    print "[i] insert dollar"
+    print "[r] Redeem an Appointment Code"
+    print "[s] Schedule an Appointment"
     print "[1] Buy Simple ($5/1 Coin)"
     print "[2] Buy Clean ($6/2 Coins)"
     print "[3] Buy Stupendous ($7/3 Coins)"
     print "[4] Buy Touchless Simple ($6/1 Coin)"
     print "[5] Buy Touchless Clean ($7/2 Coins)"
     print "[6] Buy Touchless Stupendous ($8/3 Coins)"
-    print "[q] Quit"
+    print
+    print "[q] Quit - Return Dollars/Coins"
     return raw_input('Action :')
 
-
+def ticket_collision(ticketno):
+    """check if ticketno is already in use, return true on collision, 
+    else false"""
+    try:    #unmarshall saved tickets list from file
+        tickets = pickle.load(open(DB_TICKET,'rb'))
+    except IOError: #file doesn't exist
+        tickets = []
+    collision = False
+    for ticket in tickets:
+        if ticket['ticket_no'] == ticketno:
+            collision = True
+            break
+    return collision
+    
+def gen_ticket(dollars, coins, weekday, washtype):
+    """generate a ticket and persist ticket info for later redemption"""
+    ticket_no = "%06d" % random.randint(1, 999999) #0 padded 6 digit number
+    while ticket_collision(ticket_no): #collision test loop
+        ticket_no = "%06d" % random.randint(1, 999999) #0 padded 6 digit number
+    #have a good ticket number so write the ticket info
+    try:    #unmarshall saved tickets list from file
+        tickets = pickle.load(open(DB_TICKET, 'rb'))
+    except IOError: #file doesn't exist
+        tickets = []
+    tickets.append({'ticket_no':ticket_no,  #update tickets with information
+                                'dollars':dollars,
+                                'coins':coins,
+                                'weekday':weekday,
+                                'washtype':washtype})
+    pickle.dump(tickets, open(DB_TICKET, 'wb')) #persist ticket information
+    print
+    print "Ticket Printing..."
+    print "Ticket #: %s" % ticket_no
+    print "Day     : %s" % weekday
+    print "Wash    : %s" % washtype
+    print
+    print 
+    
+def redeem_ticket():
+    """redeem a ticket number"""
+    while True: #loop while not valid input or quit
+        print "Redeem Ticket"
+        print "*************"
+        print "[q] Return to Previous Menu"
+        print
+        ticket_no = raw_input('Enter 6 digit code: ')
+        ticket_no = ticket_no.strip()
+        if ticket_no == 'q': 
+            return
+            
+        try:
+            tickets = pickle.load(open(DB_TICKET, 'rb'))
+        except IOError: #ticket file not found
+            print "Ticket Number Not Found"
+            return
+        for ticket in tickets:
+            if ticket['ticket_no'] == ticket_no:
+                for prc in PRICELIST: #search pricelist 
+                    if ticket['washtype'] == prc['type']:
+                        print "Executing : %s" % ticket['washtype']
+                        prc['action']() #call the method
+                tickets.remove(ticket) #remove if from the list
+                pickle.dump(tickets, open(DB_TICKET, 'wb')) #update store
+                return
+        print "Ticket Number Not Found"
+                
+    
+    
+def apptmenu():
+    """menu to set appointment/print ticket"""
+    day_names = ['Monday', 
+                        'Tuesday', 
+                        'Wednesday', 
+                        'Thursday', 
+                        'Friday', 
+                        'Saturday', 
+                        'Sunday'
+                    ]
+    the_day = ''
+    #create a list of '0','1'... string reps of integers
+    while the_day not in [str(x) for x in range(len(day_names))]:
+        if the_day:
+            print "Request not understood please try again"
+            print
+        print
+        print "Schedule Appointment"
+        print "********************"
+        for dayname in day_names:
+            print "[%i] %s" % (day_names.index(dayname), dayname)
+        print 
+        print "[q] Quit"
+        the_day = raw_input('Select Day: ')    
+        if the_day == 'q':
+            return
+    the_day = int(the_day)
+    
+    wash_type = ''
+    while not wash_type:
+        print "Select Type of Wash"
+        print "*******************"
+        print "Balance $%i / %i Coins" % (COINBOX.dollars, COINBOX.coins)
+        print
+        for idx in range(len(PRICELIST)):
+            prc = PRICELIST[idx]
+            prc['idx'] = idx
+            print "[%(idx)i] %(type)s $%(price)i/%(coins)i Coins" % prc
+        print 
+        print "[q] Return to Previous Menu"
+        wash_type = raw_input('Select Type of Wash: ')
+        if wash_type == 'q':
+            return
+        try:
+            wash_type = int(wash_type)
+            try:
+                prc = PRICELIST[wash_type]
+                if COINBOX.use_dollars(prc['price']): #charge it!
+                    gen_ticket(prc['price'], 0, day_names[the_day], prc['type'])
+                    
+                elif COINBOX.use_coins(prc['coins']):
+                    gen_ticket(0, prc['coins'], day_names[the_day], prc['type'])
+                    
+                else:   #they need to get J-O-B if they want to wash with me
+                    print "Sorry, Insufficient Funds"
+                
+            except IndexError:
+                wash_type = ''
+        except ValueError:
+            wash_type = ''
+    
+    
 #make some objects
 FBW = FroBozzWash()
 COINBOX = CoinBox()
@@ -201,16 +343,22 @@ PRICELIST = [
 
 ACTION = '' #put the needle on the record
 while ACTION != 'q': #start dancing
-    ACTION = usermenu(COINBOX.dollars, COINBOX.coins)#defer to puny human
+    ACTION = usermenu()#defer to puny human
 
     #respond to request
-    if ACTION == 'i':   # dollar inserted
-        COINBOX.insert_dollar() #chalk it up
-        print 'Cha-Ching'   #output warm fuzzy
-    
     if ACTION == 'c':   #coin inserted
         COINBOX.insert_coin() #add it up
         print 'Cha-Chang'
+        
+    elif ACTION == 'i':   # dollar inserted
+        COINBOX.insert_dollar() #chalk it up
+        print 'Cha-Ching'   #output warm fuzzy
+    
+    elif ACTION == 'r':    #they are redeeming
+        redeem_ticket()
+        
+    elif ACTION == 's':    #they are scheduling
+        apptmenu()
         
     elif ACTION in ['1', '2', '3', '4', '5', '6']: #machine action selected
         if FBW.isWorking():  # only attempt if machine is on-line
@@ -228,7 +376,7 @@ while ACTION != 'q': #start dancing
         else: # machine if off line
             print "Sorry, The Car Wash is temporarily off-line"
             print  "Please try again later."
-
+    
     elif ACTION == 'q': #they've quit
         if COINBOX.dollars: # give'm back their dime
             print "Returning $%i" % COINBOX.return_dollars()
