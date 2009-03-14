@@ -8,12 +8,14 @@ my $kennel = Kennel->new();
 my $reservations = Reservations->new();
 while (my $res = $reservations->next) {
    if ($kennel->reserve($res)) {
-      print $res->raw . " reserved.\n";
+      print $res->id . " reserved.\n";
    } else {
-      print $res->raw . " rejected.\n";
+      print $res->id . " rejected.\n";
    }
 }
-print $kennel->books;
+
+print "\n\n";
+print $kennel->report;
 
 
 
