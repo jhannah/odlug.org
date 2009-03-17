@@ -1,8 +1,23 @@
 -module(pet_demand).
 
--export([parse/1]).
+-export([parse/1, parse_file/1]).
 
 -include("models.hrl").
+
+parse_file(Path) ->
+  {ok, IoDevice} = file:open(Path, [read]),
+  parse_file(IoDevice, []).
+
+parse_file(IoDevice, Acc) ->
+  case io:get_line(IoDevice, '') of
+    {error, Reason} ->
+      exit(Reason);
+    eof ->
+      lists:reverse(Acc);
+    Result ->
+      Demand = parse(string:strip(Result, right, $\n)),
+      parse_file(IoDevice, [Demand | Acc])
+  end.
 
 parse_pet(PetDesc) ->
   [Weight, Species] = string:tokens(PetDesc, " pound "),
