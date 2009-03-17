@@ -7,6 +7,6 @@ ebin:
 clean:
 	rm -f ebin/*.beam
 
-test: all
+prove: all
 	(cd test; make)
 	prove test/*.t
