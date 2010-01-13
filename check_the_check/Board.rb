@@ -6,8 +6,11 @@ require 'King'
 require 'Pawn'
 
 class Board
-   def initialize()
-      print "board here\n"
+   attr_accessor :xy
+   def initialize(xy)
+      puts "board here"
+      @xy = xy
+
       bishop = Bishop.new(4,2,self,"white")
       bishop.king_search()
    end
