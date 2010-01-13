@@ -17,7 +17,7 @@ class Boards
       xy = Array.new
 
       puts "boards here"
-      fh='sample_input.txt'
+      fh='../sample_input.txt'
       File.open(fh).each do |line| 
          row = Array.new(line.chomp.split(''))
 
