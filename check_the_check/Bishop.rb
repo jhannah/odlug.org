@@ -1,8 +1,8 @@
 require 'Piece'
 
 class Bishop < Piece
-   def king_search()
 
+   def king_search()
       # up, left
       tmp_x = @x - 1
       tmp_y = @y - 1
@@ -38,7 +38,6 @@ class Bishop < Piece
          tmp_x -= 1
          tmp_y += 1
       end
-
    end
 end
 

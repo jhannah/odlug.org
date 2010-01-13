@@ -1,8 +1,14 @@
+require 'Rook'
+require 'Knight'
+require 'Bishop'
+require 'Queen'
+require 'King'
+require 'Pawn'
 
 class Board
    def initialize()
       print "board here\n"
-      bishop = Bishop.new(4,2,self)
+      bishop = Bishop.new(4,2,self,"white")
       bishop.king_search()
    end
 

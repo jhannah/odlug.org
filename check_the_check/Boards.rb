@@ -1,3 +1,4 @@
+require 'Board'
 
 class Boards
    def initialize()
