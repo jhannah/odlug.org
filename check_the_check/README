@@ -1,0 +1,15 @@
+Programming Challenges 
+by Steven S. Skiena, Miguel Revilla
+
+1.6.7 Check the Check
+
+PC/UVa IDs: 110107/10196: Popularity: B. Success rate: average Level: 1
+
+Your task is to write a program that reads a chessboard configuration and identifies
+whether a king in under attack (in check). A king is in check if it is on a square which
+can be taken by the opponent on his next move.
+
+White pieces will be represented by uppercase letters, and black pieces by lowercase
+letters. The white side will always be on the bottom of the board, with the black side
+always on the top.
+

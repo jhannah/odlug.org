@@ -1,0 +1,2 @@
+Game #1: black king is in check.
+Game #2: white king is in check.
