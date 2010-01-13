@@ -1,16 +1,10 @@
 
 class Pawn
-   #attr_reader :owner, :weight
-   #def initialize(cust_id,weight,date_range=[])
-   #  @owner, @weight = cust_id, weight
+   #attr_reader :x, :y, :board
+   #def initialize(x, y, board) 
+   #   @x, @y, @board = x, y, board
+   #   print 
    #end
-   def initialize()
-      print "pawn here\n"
-   end
 end
-
-#class Cat < Pet
-#end
-#class Dog < Pet
 
 
