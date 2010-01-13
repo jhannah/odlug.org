@@ -1,7 +1,7 @@
-class Bishop
-   def initialize()
-      print "bishop here\n"
-   end
+require 'Piece'
+
+class Bishop < Piece
 end
+
 
 
