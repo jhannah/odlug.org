@@ -12,14 +12,22 @@ class Scheduler
      4.times{@crates<< SmallCrate.new}
      3.times{@crates<< LargeCrate.new}
   end
-  def combination(ary,head_start=[])
+  def combination(ary,head=[])
     return ary if(ary==[] )
-    head_start << ary.shift
-    tail = ary.clone 
-    tmp= combination(ary,head_start.flatten) 
-    tmp+=combination(tail, []) if([head_start].flatten.size <= 1)
-    return tmp<<head_start
+    head << ary.shift 
+    tail = ary.clone
+    tmp=[]
+   if(tail.length>=1)   
+      tmp+= combination(tail[1..(tail.length)],head.flatten)+
+              combination(Array(tail[-1]),head.flatten)
+      tmp+=combination(tail[2..(tail.length)],head.flatten) if(tail[2])
+    else
+      tmp += combination(tail,Array(head[0]))
+    end
+    tmp += combination(tail, []) +combination(ary,head.flatten)  
+    return (tmp<<head).uniq
   end
+  
  def schedule_reservations(list_of_customers)
   good_res, conflicts =  find_conflicts(list_of_customers)
   list_of_possibilities = combination(conflicts)
