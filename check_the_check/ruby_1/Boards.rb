@@ -21,15 +21,13 @@ class Boards
       File.open(fh).each do |line| 
          row = Array.new(line.chomp.split(''))
 
-         #row.each { |piece| print piece + " " }
-         #print "\n"
-         #puts row.count
+         # row.each { |piece| print piece + "   " }
+         # print "\n"
+         # puts row.count
  
-         # TODO: instantiate a Rook object (etc.) for each xy coordinate that
-         # has a piece on it.
-
          if row.count == 0 then
             board = Board.new(xy)
+            board.king_search()
          else 
             xy.push(row)
          end 

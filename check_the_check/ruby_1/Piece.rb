@@ -3,5 +3,9 @@ class Piece
    def initialize(x, y, board, color) 
       @x, @y, @board, @color = x, y, board, color
    end
+   def report() 
+      rval = "Hello, I am ", color, " ", self, " at ", x, ",", y
+      return rval
+   end
 end
 
