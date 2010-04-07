@@ -12,8 +12,8 @@
 	<li>
 		<strong>The idea</strong><br>
 		<p>
-			We would implement the simple and fast duplication inference algorithm described by Zmasek and Eddy (Zmasek and Eddy, 2001, "A simple algorithm to infer gene duplication and speciation events on a gene tree". With several billion nucleotides sequenced daily (Edwards, Hansen and Stajich, 2009, "Bioinformatics - Tools and applications"), the determination of protein function is mostly done automatically without human intervention by finding the most similar sequences that already have determined protein function (microevolutionary approach). This way of automatically determining protein function neglects additional available information in the form of macroevolutionary relationships. By inferring these interesting relationships (speciation, duplication) from a species and gene tree using a simple algorithm, we can gain a better understanding of protein function.<br>
-			The importance of determining these evolutionary relationships stems from a relatively simple assumption, that if two similar genes are thought to be related by speciation, their function is more likely to be similar too. On the other hand, if we determine these two genes to be related by duplications, their function is more likely to be different, as gene duplications are powerful drivers in the evolution of new protein function. This is because the second copy of a gene is often free of selective pressure and accumulates mutations more rapidly than a single copy of a gene.<br>
+			We would implement the simple and fast duplication inference algorithm described by Zmasek and Eddy (Zmasek and Eddy, 2001, "A simple algorithm to infer gene duplication and speciation events on a gene tree". With several billion nucleotides sequenced daily (Edwards, Hansen and Stajich, 2009, "Bioinformatics - Tools and applications"), the determination of protein function is mostly done without human intervention by finding the most similar sequences that already have determined protein function (microevolutionary approach). This way of automatically determining protein function neglects additional available information in the form of macroevolutionary relationships. By inferring these interesting relationships (speciation, duplication) from a species and gene tree using a simple algorithm, we can gain a better understanding of protein function.<br>
+			The importance of determining these evolutionary relationships stems from a relatively simple assumption, that if two similar genes are thought to be related by speciation, their function is more likely to be similar too. On the other hand, if we determine these two genes to be related by duplications, their function is more likely to be different, as gene duplications are powerful drivers in the evolution of new protein function. This is simply because the second copy of a gene is often free of selective pressure and accumulates mutations more rapidly than a single copy of a gene.<br>
 			The original algorithm proposed by Zmasek and Eddy supports rooted fully binary gene and species trees, but we have decided to expand on that scope by implementing support for unrooted gene trees (which are produced by some bioinformatics methods and thus need to be addressed), non-binary species trees (since a lot of species trees are non-binary, i.e. 64% of NCBI nodes have more than 2 children (Vernot, 2007)), and non-binary gene trees (which are also produced by some bioinformatics methods, but represent only uncertainties, as gene trees are inherently binary).
 		</p>
 	</li>
@@ -35,52 +35,64 @@
 			<p>Some terminology:
 				<dl>
 					<dt>
-						g:
+						<strong>g:</strong>
 					</dt>
 					<dd>
 						a node in the gene tree.
 					</dd>
 					<dt>
-						p(g):
+						<strong>p(g):</strong>
 					</dt>
 					<dd>
 						the parent of node g in the gene tree
 					</dd>
 					<dt>
-						s:
+						<strong>s:</strong>
 					</dt>
 					<dd>
 						a node in the species tree.
 					</dd>
 					<dt>
-						M:
+						<strong>M:</strong>
 					</dt>
 					<dd>
 						a mapping function that links nodes of a gene tree to nodes of a species tree
 					</dd>
 					<dt>
-						roofN:
+						<strong>roofN:</strong>
 					</dt>
 					<dd>
 						an adapted mapping function for non-binary species trees
 					</dd>
 					<dt>
-						e(p(g),g):
+						<strong>e(p(g),g):</strong>
 					</dt>
 					<dd>
 						the edge between parent of g and g in the gene tree
 					</dd>
 					<dt>
-						polytomy
+						<strong>polytomy:</strong>
 					</dt>
 					<dd>
 						a species tree node with more than 2 children
 					</dd>
 				</dl>
 			<br>	
-			There are several milestones to be reached in developing this idea and this is the work plan I propose:</p>
+			I have divided my work plan according to Google's timeline of community bonding and coding period, so let's start off with the first one:<br>
+			<em>Community bonding period (26th of April to 24th of May 2010):</em></p>
+			<ul>
+				<li>I will say hello to my mentor and introduce myself to the Open Bio Foundation community and the BioRuby community in particular, to see if they have any advice for me and my future work (this is only a continuation of an already ongoing process, as I am in contact with the community since March 24th 2010).</li>
+				<li>Do the BioRuby tutorial to get to know some of the functionality of it and play around with it just for fun.</li>
+				
+				<li>Look at different open source phylogenomic analysis software, such as <a href="http://sourceforge.net/projects/forester-atv/">FORESTER</a> and <a href="http://evolution.genetics.washington.edu/phylip.html">PHYLIP</a>, to gain insight into some of the established and time-proven implementations of algorithms for phylogenetic analysis.</li>
+				<li>Familiarize myself with GitHub (I have already started with this <a href="http://github.com/jure/GSoC-2010-proposal/blob/master/proposal.html">as you can see by this proposal being added to my repository</a>.)</li>
+				<li>Fork the BioRuby repository and code simple proof-of-concept functions and extended functionality based on phyloXML (such as parent(node) and children(node) for returning the parent and child nodes, respectively, of a given tree node), to familiarize myself with the phyloXML implementation and interfaces in BioRuby.</li>
+			</ul>
+			<p>There are several milestones to be reached in developing this idea and this is the work plan I propose:</p>
 		<ol>
+			
 			<li>Development of unit tests with known species and gene trees (1 week).
+			
 			</li>
 			<li>Making or reusing necessary data structures, made easier by last years GSoC contribution implementing phyloXML in BioRuby (1/2 weeks - 1 week):
 				<ul>
