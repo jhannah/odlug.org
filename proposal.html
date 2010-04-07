@@ -3,7 +3,7 @@
 		<strong>Contact information</strong><br>
 		<p>
 			Name: Jure <br>
-			E-mail: <br>
+			E&#45;mail: <br>
 			IRC nickname: x` <br>
 			Physical address: <br>
 			Telephone: <br>
@@ -12,89 +12,54 @@
 	<li>
 		<strong>The idea</strong><br>
 		<p>
-			We would implement the simple and fast duplication inference algorithm described by Zmasek and Eddy (Zmasek and Eddy, 2001, "A simple algorithm to infer gene duplication and speciation events on a gene tree". With several billion nucleotides sequenced daily (Edwards, Hansen and Stajich, 2009, "Bioinformatics - Tools and applications"), the determination of protein function is mostly done without human intervention by finding the most similar sequences that already have determined protein function (microevolutionary approach). This way of automatically determining protein function neglects additional available information in the form of macroevolutionary relationships. By inferring these interesting relationships (speciation, duplication) from a species and gene tree using a simple algorithm, we can gain a better understanding of protein function.<br>
+			We would implement the simple and fast duplication inference algorithm described by Zmasek and Eddy (Zmasek and Eddy, 2001, "A simple algorithm to infer gene duplication and speciation events on a gene tree". With several billion nucleotides sequenced daily (Edwards, Hansen and Stajich, 2009, "Bioinformatics &ndash; Tools and applications"), the determination of protein function is mostly done without human intervention by finding the most similar sequences that already have determined protein function (microevolutionary approach). This way of automatically determining protein function neglects additional available information in the form of macroevolutionary relationships. By inferring these interesting relationships (speciation, duplication) from a species and gene tree using a simple algorithm, we can gain a better understanding of protein function.<br>
 			The importance of determining these evolutionary relationships stems from a relatively simple assumption, that if two similar genes are thought to be related by speciation, their function is more likely to be similar too. On the other hand, if we determine these two genes to be related by duplications, their function is more likely to be different, as gene duplications are powerful drivers in the evolution of new protein function. This is simply because the second copy of a gene is often free of selective pressure and accumulates mutations more rapidly than a single copy of a gene.<br>
-			The original algorithm proposed by Zmasek and Eddy supports rooted fully binary gene and species trees, but we have decided to expand on that scope by implementing support for unrooted gene trees (which are produced by some bioinformatics methods and thus need to be addressed), non-binary species trees (since a lot of species trees are non-binary, i.e. 64% of NCBI nodes have more than 2 children (Vernot, 2007)), and non-binary gene trees (which are also produced by some bioinformatics methods, but represent only uncertainties, as gene trees are inherently binary).
+			The original algorithm proposed by Zmasek and Eddy supports rooted fully binary gene and species trees, but we have decided to expand on that scope by implementing support for unrooted gene trees (which are produced by some bioinformatics methods and thus need to be addressed), non&#45;binary species trees (since a lot of species trees are non&#45;binary, i.e. 64% of NCBI nodes have more than 2 children (Vernot, 2007)), and non&#45;binary gene trees (which are also produced by some bioinformatics methods, but represent only uncertainties, as gene trees are inherently binary).
 		</p>
 	</li>
 	<li>
 		<strong>Goals</strong>
+		<p>
 		<ol>
 			<li>Implement the algorithm as described by Zmasek and Eddy in "A simple algorithm to infer gene duplication and speciation events on a gene tree", or SDI, which is designed to work on rooted gene trees and fully binary gene and species tree.
 			</li>
 			<li>Allow rooting of unrooted gene trees by minimizing sum of duplications as described by Zmasek and Eddy in "RIO: Analyzing proteomes by automated phylogenomics using resampled inference of orthologs", and thus extending the implementation to support unrooted gene trees.
 			</li>
-			<li>Extend the algorithm to support non-binary species tree as described by Vernot in "Reconciliation with non-binary species tree".
+			<li>Extend the algorithm to support non&#45;binary species tree as described by Vernot in "Reconciliation with non&#45;binary species tree".
 			</li>
-			<li>Optional: Extend the algorithm to support non-binary gene trees as described by Durand in "A Hybrid Micro–Macroevolutionary Approach to Gene Tree Reconstruction".
+			<li>Extend the algorithm to support non&#45;binary gene trees as described by Durand in "A Hybrid Micro–Macroevolutionary Approach to Gene Tree Reconstruction". (I consider this goal an optional one, since this is the least defined problem of this group of problems, and will be implemented only if time permits).
 			</li>
 		</ol>
-		<p>&nbsp;</p>
+		</p>
+		
 	</li>
 	<li><strong>The work</strong>
-			<p>Some terminology:
-				<dl>
-					<dt>
-						<strong>g:</strong>
-					</dt>
-					<dd>
-						a node in the gene tree.
-					</dd>
-					<dt>
-						<strong>p(g):</strong>
-					</dt>
-					<dd>
-						the parent of node g in the gene tree
-					</dd>
-					<dt>
-						<strong>s:</strong>
-					</dt>
-					<dd>
-						a node in the species tree.
-					</dd>
-					<dt>
-						<strong>M:</strong>
-					</dt>
-					<dd>
-						a mapping function that links nodes of a gene tree to nodes of a species tree
-					</dd>
-					<dt>
-						<strong>roofN:</strong>
-					</dt>
-					<dd>
-						an adapted mapping function for non-binary species trees
-					</dd>
-					<dt>
-						<strong>e(p(g),g):</strong>
-					</dt>
-					<dd>
-						the edge between parent of g and g in the gene tree
-					</dd>
-					<dt>
-						<strong>polytomy:</strong>
-					</dt>
-					<dd>
-						a species tree node with more than 2 children
-					</dd>
-				</dl>
-			<br>	
-			I have divided my work plan according to Google's timeline of community bonding and coding period, so let's start off with the first one:<br>
-			<em>Community bonding period (26th of April to 24th of May 2010):</em></p>
+			<p>I have divided my work plan according to Google's timeline of community bonding and coding period, so let's start off with the first one:<br><br>
+			<strong><em>Community bonding period (26th of April to 23rd of May 2010):</em></strong></p>
 			<ul>
 				<li>I will say hello to my mentor and introduce myself to the Open Bio Foundation community and the BioRuby community in particular, to see if they have any advice for me and my future work (this is only a continuation of an already ongoing process, as I am in contact with the community since March 24th 2010).</li>
 				<li>Do the BioRuby tutorial to get to know some of the functionality of it and play around with it just for fun.</li>
 				
-				<li>Look at different open source phylogenomic analysis software, such as <a href="http://sourceforge.net/projects/forester-atv/">FORESTER</a> and <a href="http://evolution.genetics.washington.edu/phylip.html">PHYLIP</a>, to gain insight into some of the established and time-proven implementations of algorithms for phylogenetic analysis.</li>
+				<li>Look at different open source phylogenomic analysis software, such as <a href="http://sourceforge.net/projects/forester-atv/">FORESTER</a> and <a href="http://evolution.genetics.washington.edu/phylip.html">PHYLIP</a>, to gain insight into some of the established and time&#45;proven implementations of algorithms for phylogenetic analysis.</li>
 				<li>Familiarize myself with GitHub (I have already started with this <a href="http://github.com/jure/GSoC-2010-proposal/blob/master/proposal.html">as you can see by this proposal being added to my repository</a>.)</li>
-				<li>Fork the BioRuby repository and code simple proof-of-concept functions and extended functionality based on phyloXML (such as parent(node) and children(node) for returning the parent and child nodes, respectively, of a given tree node), to familiarize myself with the phyloXML implementation and interfaces in BioRuby.</li>
+				<li>Fork the BioRuby repository and code simple proof&#45;of&#45;concept functions and extended functionality based on phyloXML (such as parent(node) and children(node) for returning the parent and child nodes, respectively, of a given tree node), to familiarize myself with the phyloXML implementation and interfaces in BioRuby.</li>
 			</ul>
-			<p>There are several milestones to be reached in developing this idea and this is the work plan I propose:</p>
+			<p><br><strong><em>The coding period (24th of May to 9th of August 2010):</em></strong><br><br>
+			There are several milestones to be reached in developing this idea and this is the work plan I propose:</p>
+	<p>
 		<ol>
 			
-			<li>Development of unit tests with known species and gene trees (1 week).
-			
+			<li><strong>Development of unit tests with known species and gene trees (1 week)</strong>:
+			<ul>
+				<li>Tests for binary species and rooted binary gene trees &ndash; they pass if determined speciation and duplication events match the correct solution,</li>
+				<li>tests for unrooted gene trees &ndash; they pass if gene trees are rooted correctly,</li>
+				<li>tests for non&#45;binary species trees and rooted/unrooted gene trees &ndash; they pass if determined speciation and duplication events match the correct solution,</li>
+				<li>tests for binary species and non&#45;binary gene trees &ndash; same as above,</li>
+				<li>some of these test cases are available in the Forester library by Zmasek (i.e. <a href="http://forester-atv.cvs.sourceforge.net/viewvc/forester-atv/forester-atv/java/src/org/forester/sdi/TestGSDI.java?revision=1.13&view=markup">TestGSDI.java</a>) and can be used as a reference.</li>
+				</ul>
 			</li>
-			<li>Making or reusing necessary data structures, made easier by last years GSoC contribution implementing phyloXML in BioRuby (1/2 weeks - 1 week):
+			<br>
+			<li><strong>Making or reusing necessary data structures, made easier by last years GSoC contribution implementing phyloXML in BioRuby (1/2 weeks - 1 week):</strong>
 				<ul>
 					<li>gene tree,
 					</li>
@@ -108,11 +73,12 @@
 					</li>
 				</ul>
 			</li>
-			<li>Developing checks for the correctness of input data for rooted fully binary trees SDI (1/2 weeks - 1 week):
+			<br>
+			<li><strong>Developing checks for the correctness of input data for rooted fully binary trees SDI (1/2 weeks &ndash; 1 week):</strong>
 				<ul>
 					<li>making sure trees are rooted and binary,
 					</li>
-					<li>all species/gene tree nodes have at least on type of taxonomic data.
+					<li>all species/gene tree nodes have at least on type of taxonomic data,
 					</li>
 					<li>making a taxonomy base from a type of data present in all nodes (scientific or common name, taxonomy code, id),
 					</li>
@@ -120,15 +86,17 @@
 					</li>
 				</ul>
 			</li>
-			<li>Implementation of the recursive M function (1 week):
+			<br>
+			<li><strong>Implementation of the recursive M function (1 week):</strong>
 				<ul>
 					<li>traverse the gene tree in postorder (left subtree, right subtree, root),
 					</li>
-					<li>finding occurrences where M(parent) equals M(child 1 or 2) - this is representative for finding a duplication. If M(parent) matches neither, the processed node is a speciation.
+					<li>finding occurrences where M(parent) equals M(child 1 or 2) &ndash; this is representative for finding a duplication. If M(parent) matches neither, the processed node is a speciation.
 					</li>
 				</ul>
 			</li>
-			<li>Milestone - finished implementation of SDI for rooted fully binary trees (1/2 week):
+			<br>
+			<li><strong>Milestone &ndash; finished implementation of SDI for rooted fully binary trees (1/2 week):</strong>
 				<ul>
 					<li>Extensive testing,
 					</li>
@@ -138,7 +106,8 @@
 					</li>
 				</ul>
 			</li>
-			<li>Milestone: Implementation of support for unrooted gene trees (1 week):
+			<br>
+			<li><strong>Milestone: Implementation of support for unrooted gene trees (1 week):</strong>
 				<ul>
 					<li>implement an algorithm which roots an unrooted gene tree by exploring all possible roots and selecting the one with minimum duplications,
 					</li>
@@ -162,7 +131,8 @@
 					</li>
 				</ul>
 			</li>
-			<li>Milestone: Implementing an duplication/loss inference algorithm for non-binary species trees (described by Vernot, 2008) (2 weeks):
+			<br>
+			<li><strong>Milestone: Implementing an duplication/loss inference algorithm for non&#45;binary species trees (described by Vernot, 2008) (2 weeks):</strong>
 				<ul>
 					<li>implement function roofN(g), which returns all roots of subtrees of the parent of "s" (s = M(g)) in which descendants of g must be present,
 					</li>
@@ -184,26 +154,28 @@
 							</li>
 						</ul>
 					</li>
-					<li>the algorithm for this is written in pseudocode in "Reconciliation with non-binary species tree" by Vernot as "Algorithm 5.1", which has to be translated to Ruby code.
+					<li>the algorithm for this is written in pseudocode in "Reconciliation with non&#45;binary species tree" by Vernot as "Algorithm 5.1", which has to be translated to Ruby code.
 					</li>
 				</ul>
 			</li>
-			<li>Implementing support for non-binary gene trees (2 weeks):
+			<br>
+			<li><strong>Implementing support for non&#45;binary gene trees (2 weeks):</strong>
 				<ul>
 					<li>gene trees are by definition binary, but some methods produce uncertainties which result in multifurcating gene trees,
 					</li>
-					<li>we can support non-binary gene trees by expanding multifurcating nodes to arbitrary binary trees and then optimizing the generated tree for duplications and losses with a previously developed algorithm,
+					<li>we can support non&#45;binary gene trees by expanding multifurcating nodes to arbitrary binary trees and then optimizing the generated tree for duplications and losses with a previously developed algorithm,
 					</li>
-					<li>this approach is described in "A Hybrid Micro–Macroevolutionary Approach to Gene Tree Reconstruction" by Durand, which contains several pseudocode algorithms that can be ported to Ruby.
+					<li>this approach is described in "A Hybrid Micro&#45;Macroevolutionary Approach to Gene Tree Reconstruction" by Durand, which contains several pseudocode algorithms that can be ported to Ruby.
 					</li>
 				</ul>
 			</li>
 		</ol>
+		</p>
 	</li>
 	<li>
 		<strong>Why me?</strong>
 		<p>
-			I like to set foot on unknown territory and challenge myself constantly. I have long searched for something that would connect my love of medicine to my love of programming, and now, thanks to GSoC and OBF, I think I found it - bioinformatics. I am at a stage of my medical study, where I have to decide what my future will entail, and I am (now, after thinking about it for a long time) positive that bioinformatics will be a big part of it. What better way to get future off to a good start, than with a Google Summer of Code project? Based on this enthusiasm alone you can be assured that I'll work really hard on this project and that I will be happy to see it done. As this would be my first serious open source engagement, you also have a chance of forming a completely new addition to the open source world and making a good contributor out of me.
+			I like to set foot on unknown territory and challenge myself constantly. I have long searched for something that would connect my love of medicine to my love of programming, and now, thanks to GSoC and OBF, I think I found it &ndash; bioinformatics. I am at a stage of my medical study, where I have to decide what my future will entail, and I am (now, after thinking about it for a long time) positive that bioinformatics will be a big part of it. What better way to get future off to a good start, than with a Google Summer of Code project? Based on this enthusiasm alone you can be assured that I'll work really hard on this project and that I will be happy to see it done. As this would be my first serious open source engagement, you also have a chance of forming a completely new addition to the open source world and making a good contributor out of me.
 		</p>
 	</li>
 	<li>
@@ -211,7 +183,7 @@
 		<ol>
 			<li>
 				<p>
-					I have been working on a simulation of an analytical chemistry method for the past 2 years now, more specifically we have modeled laser ablation + inductively coupled plasma mass spectrometry with a simple model, which aids our elemental mapping projects. For the write-up of this project I have been awarded with a "Prešernovo priznanje" in 2008 (PDF upon request). This work entails several interesting components, from basics such as: C# development, image input, output, multi-threaded programming, UI development; to complex themes such as: genetic algorithms and neural networks. All of which I learned as we worked on the project without much hassle (source code upon request). This work is not yet open source, because we are in the finalizing stages of the paper and will release the source code after publication under an open source license.
+					I have been working on a simulation of an analytical chemistry method for the past 2 years now, more specifically we have modeled laser ablation + inductively coupled plasma mass spectrometry with a simple model, which aids our elemental mapping projects. For the write&#45;up of this project I have been awarded with a "Prešernovo priznanje" in 2008 (PDF upon request). This work entails several interesting components, from basics such as: C# development, image input, output, multi&#45;threaded programming, UI development; to complex themes such as: genetic algorithms and neural networks. All of which I learned as we worked on the project without much hassle (source code upon request). This work is not yet open source, because we are in the finalizing stages of the paper and will release the source code after publication under an open source license.
 				</p>
 			</li>
 			<li>
@@ -224,7 +196,7 @@
 	<li>
 		<strong>Short biography</strong>
 		<p>
-			My name is Jure Triglav and I'm a 24 year old medical student from Ljubljana, Slovenia. I was born in a small town of Murska Sobota in Slovenia, where I went to grade school (graded excellent for all years, awarded "Zoisova štipendija" for the gifted, which I still hold) and high-school (excellent, finished as "Zlati maturant" in the company of about 200 best students in the country). I moved to Ljubljana in 2004 to study medicine. I am now in the last (6th) year of my medical study which I find challenging and very interesting. <br>
+			My name is Jure Triglav and I'm a 24 year old medical student from Ljubljana, Slovenia. I was born in a small town of Murska Sobota in Slovenia, where I went to grade school (graded excellent for all years, awarded "Zoisova štipendija" for the gifted, which I still hold) and high&#45;school (excellent, finished as "Zlati maturant" in the company of about 200 best students in the country). I moved to Ljubljana in 2004 to study medicine. I am now in the last (6th) year of my medical study which I find challenging and very interesting. <br>
 			My hobbies are all over the place, from book design to photography, from web design to typography, from guitar to poetry, from reading to programming, from traveling to sports.
 		</p>
 	</li>
@@ -234,4 +206,51 @@
 			I am attending a conference for young scientists in the field of analytical chemistry, or YISAC, which is taking place in Venice from the 29th of June to the 1st of July 2010. Other than this, I have no work, study or vacation obligations for the duration of Google Summer of Code 2010.
 		</p>
 	</li>
+	<li><strong>A short glossary</strong>
+		<p>Some terminology that is needed for sections above:
+			<dl>
+				<dt>
+					<strong>g:</strong>
+				</dt>
+				<dd>
+					a node in the gene tree.
+				</dd>
+				<dt>
+					<strong>p(g):</strong>
+				</dt>
+				<dd>
+					the parent of node g in the gene tree
+				</dd>
+				<dt>
+					<strong>s:</strong>
+				</dt>
+				<dd>
+					a node in the species tree.
+				</dd>
+				<dt>
+					<strong>M:</strong>
+				</dt>
+				<dd>
+					a mapping function that links nodes of a gene tree to nodes of a species tree
+				</dd>
+				<dt>
+					<strong>roofN:</strong>
+				</dt>
+				<dd>
+					an adapted mapping function for non&#45;binary species trees
+				</dd>
+				<dt>
+					<strong>e(p(g),g):</strong>
+				</dt>
+				<dd>
+					the edge between parent of g and g in the gene tree
+				</dd>
+				<dt>
+					<strong>polytomy:</strong>
+				</dt>
+				<dd>
+					a species tree node with more than 2 children
+				</dd>
+			</dl></p>
+		</li>
 </ol>
