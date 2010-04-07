@@ -12,8 +12,8 @@
 	<li>
 		<strong>The idea</strong><br>
 		<p>
-			We would implement the simple and fast duplication inference algorithm described by Zmasek and Eddy (Zmasek and Eddy, 2001, "A simple algorithm to infer gene duplication and speciation events on a gene tree". With several billion nucleotides sequenced daily (Edwards, Hansen and Stajich, 2009, "Bioinformatics &ndash; Tools and applications"), the determination of protein function is mostly done without human intervention by finding the most similar sequences that already have determined protein function (microevolutionary approach). This way of automatically determining protein function neglects additional available information in the form of macroevolutionary relationships. By inferring these interesting relationships (speciation, duplication) from a species and gene tree using a simple algorithm, we can gain a better understanding of protein function.<br>
-			The importance of determining these evolutionary relationships stems from a relatively simple assumption, that if two similar genes are thought to be related by speciation, their function is more likely to be similar too. On the other hand, if we determine these two genes to be related by duplications, their function is more likely to be different, as gene duplications are powerful drivers in the evolution of new protein function. This is simply because the second copy of a gene is often free of selective pressure and accumulates mutations more rapidly than a single copy of a gene.<br>
+			With several billion nucleotides sequenced daily (Edwards, Hansen and Stajich, 2009, "Bioinformatics &ndash; Tools and applications"), the determination of protein function is mostly done without human intervention by finding the most similar sequences that already have determined protein function (microevolutionary approach). This way of automatically determining protein function neglects additional available information in the form of macroevolutionary relationships. We would  <strong>implement a simple and fast duplication inference algorithm</strong> described by Zmasek and Eddy (Zmasek and Eddy, 2001, "A simple algorithm to infer gene duplication and speciation events on a gene tree") <strong>in BioRuby</strong>, which would enable users of this bioinformatics library to easily infer macroevolutionary relationships such as speciation and duplication, from a given species and gene tree pair. <br>
+			The importance of determining these evolutionary relationships stems from a relatively simple assumption, that if two similar genes are thought to be related by speciation, their function is more likely to be similar too. On the other hand, if we determine these two genes to be related by duplications, their function is more likely to be different, as gene duplications are powerful drivers in the evolution of new protein function. This is simply because the second copy of a gene is often free of selective pressure and accumulates mutations more rapidly than a single copy of a gene. Thus by taking these interesting relationships into account, users can gain a better understanding of protein function and evolution.<br>
 			The original algorithm proposed by Zmasek and Eddy supports rooted fully binary gene and species trees, but we have decided to expand on that scope by implementing support for unrooted gene trees (which are produced by some bioinformatics methods and thus need to be addressed), non&#45;binary species trees (since a lot of species trees are non&#45;binary, i.e. 64% of NCBI nodes have more than 2 children (Vernot, 2007)), and non&#45;binary gene trees (which are also produced by some bioinformatics methods, but represent only uncertainties, as gene trees are inherently binary).
 		</p>
 	</li>
@@ -27,21 +27,21 @@
 			</li>
 			<li>Extend the algorithm to support non&#45;binary species tree as described by Vernot in "Reconciliation with non&#45;binary species tree".
 			</li>
-			<li>Extend the algorithm to support non&#45;binary gene trees as described by Durand in "A Hybrid Micro–Macroevolutionary Approach to Gene Tree Reconstruction". (I consider this goal an optional one, since this is the least defined problem of this group of problems, and will be implemented only if time permits).
+			<li>Extend the algorithm to support non&#45;binary gene trees as described by Durand in "A Hybrid Micro&#45;Macroevolutionary Approach to Gene Tree Reconstruction". (I consider this goal an optional one, since this is the least defined problem of this group of problems, and will be implemented only if time permits).
 			</li>
 		</ol>
 		</p>
 		
 	</li>
 	<li><strong>The work</strong>
-			<p>I have divided my work plan according to Google's timeline of community bonding and coding period, so let's start off with the first one:<br><br>
+			<p>Below is the proposed work plan (containing some possibly unknown concepts, which are briefly explained in Section 9 &ndash; A short glossary), which I have divided according to Google's timeline of community bonding and coding period, so let's start off with the first one:<br><br>
 			<strong><em>Community bonding period (26th of April to 23rd of May 2010):</em></strong></p>
 			<ul>
 				<li>I will say hello to my mentor and introduce myself to the Open Bio Foundation community and the BioRuby community in particular, to see if they have any advice for me and my future work (this is only a continuation of an already ongoing process, as I am in contact with the community since March 24th 2010).</li>
 				<li>Do the BioRuby tutorial to get to know some of the functionality of it and play around with it just for fun.</li>
 				
 				<li>Look at different open source phylogenomic analysis software, such as <a href="http://sourceforge.net/projects/forester-atv/">FORESTER</a> and <a href="http://evolution.genetics.washington.edu/phylip.html">PHYLIP</a>, to gain insight into some of the established and time&#45;proven implementations of algorithms for phylogenetic analysis.</li>
-				<li>Familiarize myself with GitHub (I have already started with this <a href="http://github.com/jure/GSoC-2010-proposal/blob/master/proposal.html">as you can see by this proposal being added to my repository</a>.)</li>
+				<li>Familiarize myself with GitHub (I have already started with this <a href="http://github.com/jure/GSoC-2010-proposal/blob/master/proposal.html">as you can see by this proposal being added to my repository</a>).</li>
 				<li>Fork the BioRuby repository and code simple proof&#45;of&#45;concept functions and extended functionality based on phyloXML (such as parent(node) and children(node) for returning the parent and child nodes, respectively, of a given tree node), to familiarize myself with the phyloXML implementation and interfaces in BioRuby.</li>
 			</ul>
 			<p><br><strong><em>The coding period (24th of May to 9th of August 2010):</em></strong><br><br>
@@ -59,17 +59,20 @@
 				</ul>
 			</li>
 			<br>
-			<li><strong>Making or reusing necessary data structures, made easier by last years GSoC contribution implementing phyloXML in BioRuby (1/2 weeks - 1 week):</strong>
+			<li><strong>Making or reusing necessary data structures for input/output and some basic functionalities (1/2 weeks - 1 week):</strong>
 				<ul>
-					<li>gene tree,
+					<li>Made easier by last years GSoC contribution implementing phyloXML in BioRuby:
+						<ul>
+							<li>gene tree,</li>
+							<li>species tree,</li>
+							<li>tree node.</li>
+							</ul>
 					</li>
-					<li>species tree,
+					<li>children(node) &ndash; returns the children of a given node,
 					</li>
-					<li>tree node,
+					<li>child(node, number) &ndash; returns the corresponding child of a given node (if number == 1, return first child from the left; and so on),
 					</li>
-					<li>children(),
-					</li>
-					<li>parent().
+					<li>parent(node) &ndash; returns the parent of a given node.
 					</li>
 				</ul>
 			</li>
@@ -87,27 +90,27 @@
 				</ul>
 			</li>
 			<br>
-			<li><strong>Implementation of the recursive M function (1 week):</strong>
+			<li><strong>Implementation of the recursive M calculation (1 week):</strong>
 				<ul>
-					<li>traverse the gene tree in postorder (left subtree, right subtree, root),
+					<li>The M function is a mapping function, that maps a node (g) in a gene tree to a node in a species tree (s). M(g) maps to the lowest node (ancestral species) in species tree, whose descendants are a superset of species, carrying descendant genes of node g, as described in by Goodman, 1979 in "Fitting the gene lineage into its species lineage, a parsimony strategy illustrated by cladograms constructed from globin sequences",</li>  
+					<li>finding occurrences where M(parent) equals M(child 1 or 2) &ndash; this is representative for finding a duplication. If M(parent) matches neither, the given gene node is a speciation,
 					</li>
-					<li>finding occurrences where M(parent) equals M(child 1 or 2) &ndash; this is representative for finding a duplication. If M(parent) matches neither, the processed node is a speciation.
-					</li>
+					<li>traverse the gene tree in postorder (left subtree, right subtree, root) and with recursion, to determine speciation and duplication nodes, as described in the SDI algorithm by Zmasek and Eddy in "A simple algorithm to infer gene duplication and speciation events on a gene tree".</li> 
 				</ul>
 			</li>
 			<br>
 			<li><strong>Milestone &ndash; finished implementation of SDI for rooted fully binary trees (1/2 week):</strong>
 				<ul>
-					<li>Extensive testing,
+					<li>Extensive testing, making sure all tests pass, fixing any bugs that may crop up,
 					</li>
-					<li>polishing and writing documentation with RDoc,
+					<li>writing documentation for BioRuby API with RDoc,
 					</li>
-					<li>cleaning up.
+					<li>cleaning up and preparing for the harder problems.
 					</li>
 				</ul>
 			</li>
 			<br>
-			<li><strong>Milestone: Implementation of support for unrooted gene trees (1 week):</strong>
+			<li><strong>Milestone &ndash; Implementation of support for unrooted gene trees (1 week):</strong>
 				<ul>
 					<li>implement an algorithm which roots an unrooted gene tree by exploring all possible roots and selecting the one with minimum duplications,
 					</li>
@@ -132,7 +135,7 @@
 				</ul>
 			</li>
 			<br>
-			<li><strong>Milestone: Implementing an duplication/loss inference algorithm for non&#45;binary species trees (described by Vernot, 2008) (2 weeks):</strong>
+			<li><strong>Milestone &ndash; Implementing an duplication/loss inference algorithm for non&#45;binary species trees (described by Vernot, 2008) (2 weeks):</strong>
 				<ul>
 					<li>implement function roofN(g), which returns all roots of subtrees of the parent of "s" (s = M(g)) in which descendants of g must be present,
 					</li>
@@ -183,12 +186,12 @@
 		<ol>
 			<li>
 				<p>
-					I have been working on a simulation of an analytical chemistry method for the past 2 years now, more specifically we have modeled laser ablation + inductively coupled plasma mass spectrometry with a simple model, which aids our elemental mapping projects. For the write&#45;up of this project I have been awarded with a "Prešernovo priznanje" in 2008 (PDF upon request). This work entails several interesting components, from basics such as: C# development, image input, output, multi&#45;threaded programming, UI development; to complex themes such as: genetic algorithms and neural networks. All of which I learned as we worked on the project without much hassle (source code upon request). This work is not yet open source, because we are in the finalizing stages of the paper and will release the source code after publication under an open source license.
+					I have programmed since I was a child and I have developed a wide specter of things in my lifetime (from a full content management system from scratch in PHP many moons ago to an IRC robot, source code upon request), but I have little experience in fully open source projects, and would love to take this opportunity to become involved.
 				</p>
 			</li>
 			<li>
 				<p>
-					I have programmed since I was a child and I have developed a wide specter of things in my lifetime (from a full CMS in PHP to an IRC robot, source code upon request), but I have little experience in fully open source projects, which I think so highly of.
+					I have been working on a simulation of an analytical chemistry method for the past 2 years now, more specifically we have modeled laser ablation + inductively coupled plasma mass spectrometry (LA&#45;ICP&#45;MS) with a simple model, which aids our elemental mapping projects. For the write&#45;up of this project I have been awarded with a "Pre&scaron;ernovo priznanje" in 2008 (<a href="http://dl.dropbox.com/u/30920/Presernova.pdf">PDF</a>). This work has since entailed several interesting components, from basics such as: C# development, image input, output, multi&#45;threaded programming, UI development; to complex themes such as: genetic algorithms and neural networks. All of which I learned as we worked on the project without much hassle (an example of the <a href="http://github.com/jure/GSoC-2010-proposal/blob/master/GAExample.cs">genetic algorithm source code</a>, the fitness function can not be included because it is a part of a paper in writing). As mentioned, all of this work is not yet open source, because we are in the finalizing stages of a paper and will release the source code after publication under an open source license.
 				</p>
 			</li>
 		</ol>
@@ -196,7 +199,7 @@
 	<li>
 		<strong>Short biography</strong>
 		<p>
-			My name is Jure Triglav and I'm a 24 year old medical student from Ljubljana, Slovenia. I was born in a small town of Murska Sobota in Slovenia, where I went to grade school (graded excellent for all years, awarded "Zoisova štipendija" for the gifted, which I still hold) and high&#45;school (excellent, finished as "Zlati maturant" in the company of about 200 best students in the country). I moved to Ljubljana in 2004 to study medicine. I am now in the last (6th) year of my medical study which I find challenging and very interesting. <br>
+			My name is Jure Triglav and I'm a 24 year old medical student from Ljubljana, Slovenia. I was born in a small town of Murska Sobota in Slovenia, where I went to grade school (graded excellent for all years, awarded "Zoisova &scaron;tipendija" for the gifted, which I still hold) and high&#45;school (excellent, finished as "Zlati maturant" in the company of about 200 best students in the country). I moved to Ljubljana in 2004 to study medicine. I am now in the last (6th) year of my medical study which I find challenging and very interesting. <br>
 			My hobbies are all over the place, from book design to photography, from web design to typography, from guitar to poetry, from reading to programming, from traveling to sports.
 		</p>
 	</li>
