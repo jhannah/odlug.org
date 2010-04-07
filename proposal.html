@@ -1,0 +1,225 @@
+<ol>
+	<li>
+		<strong>Contact information</strong><br>
+		<p>
+			Name: Jure <br>
+			E-mail: <br>
+			IRC nickname: x` <br>
+			Physical address: <br>
+			Telephone: <br>
+		</p>
+	</li>
+	<li>
+		<strong>The idea</strong><br>
+		<p>
+			We would implement the simple and fast duplication inference algorithm described by Zmasek and Eddy (Zmasek and Eddy, 2001, "A simple algorithm to infer gene duplication and speciation events on a gene tree". With several billion nucleotides sequenced daily (Edwards, Hansen and Stajich, 2009, "Bioinformatics - Tools and applications"), the determination of protein function is mostly done automatically without human intervention by finding the most similar sequences that already have determined protein function (microevolutionary approach). This way of automatically determining protein function neglects additional available information in the form of macroevolutionary relationships. By inferring these interesting relationships (speciation, duplication) from a species and gene tree using a simple algorithm, we can gain a better understanding of protein function.<br>
+			The importance of determining these evolutionary relationships stems from a relatively simple assumption, that if two similar genes are thought to be related by speciation, their function is more likely to be similar too. On the other hand, if we determine these two genes to be related by duplications, their function is more likely to be different, as gene duplications are powerful drivers in the evolution of new protein function. This is because the second copy of a gene is often free of selective pressure and accumulates mutations more rapidly than a single copy of a gene.<br>
+			The original algorithm proposed by Zmasek and Eddy supports rooted fully binary gene and species trees, but we have decided to expand on that scope by implementing support for unrooted gene trees (which are produced by some bioinformatics methods and thus need to be addressed), non-binary species trees (since a lot of species trees are non-binary, i.e. 64% of NCBI nodes have more than 2 children (Vernot, 2007)), and non-binary gene trees (which are also produced by some bioinformatics methods, but represent only uncertainties, as gene trees are inherently binary).
+		</p>
+	</li>
+	<li>
+		<strong>Goals</strong>
+		<ol>
+			<li>Implement the algorithm as described by Zmasek and Eddy in "A simple algorithm to infer gene duplication and speciation events on a gene tree", or SDI, which is designed to work on rooted gene trees and fully binary gene and species tree.
+			</li>
+			<li>Allow rooting of unrooted gene trees by minimizing sum of duplications as described by Zmasek and Eddy in "RIO: Analyzing proteomes by automated phylogenomics using resampled inference of orthologs", and thus extending the implementation to support unrooted gene trees.
+			</li>
+			<li>Extend the algorithm to support non-binary species tree as described by Vernot in "Reconciliation with non-binary species tree".
+			</li>
+			<li>Optional: Extend the algorithm to support non-binary gene trees as described by Durand in "A Hybrid Micro–Macroevolutionary Approach to Gene Tree Reconstruction".
+			</li>
+		</ol>
+		<p>&nbsp;</p>
+	</li>
+	<li><strong>The work</strong>
+			<p>Some terminology:
+				<dl>
+					<dt>
+						g:
+					</dt>
+					<dd>
+						a node in the gene tree.
+					</dd>
+					<dt>
+						p(g):
+					</dt>
+					<dd>
+						the parent of node g in the gene tree
+					</dd>
+					<dt>
+						s:
+					</dt>
+					<dd>
+						a node in the species tree.
+					</dd>
+					<dt>
+						M:
+					</dt>
+					<dd>
+						a mapping function that links nodes of a gene tree to nodes of a species tree
+					</dd>
+					<dt>
+						roofN:
+					</dt>
+					<dd>
+						an adapted mapping function for non-binary species trees
+					</dd>
+					<dt>
+						e(p(g),g):
+					</dt>
+					<dd>
+						the edge between parent of g and g in the gene tree
+					</dd>
+					<dt>
+						polytomy
+					</dt>
+					<dd>
+						a species tree node with more than 2 children
+					</dd>
+				</dl>
+			<br>	
+			There are several milestones to be reached in developing this idea and this is the work plan I propose:</p>
+		<ol>
+			<li>Development of unit tests with known species and gene trees (1 week).
+			</li>
+			<li>Making or reusing necessary data structures, made easier by last years GSoC contribution implementing phyloXML in BioRuby (1/2 weeks - 1 week):
+				<ul>
+					<li>gene tree,
+					</li>
+					<li>species tree,
+					</li>
+					<li>tree node,
+					</li>
+					<li>children(),
+					</li>
+					<li>parent().
+					</li>
+				</ul>
+			</li>
+			<li>Developing checks for the correctness of input data for rooted fully binary trees SDI (1/2 weeks - 1 week):
+				<ul>
+					<li>making sure trees are rooted and binary,
+					</li>
+					<li>all species/gene tree nodes have at least on type of taxonomic data.
+					</li>
+					<li>making a taxonomy base from a type of data present in all nodes (scientific or common name, taxonomy code, id),
+					</li>
+					<li>making sure taxonomic data is unique throughout external nodes.
+					</li>
+				</ul>
+			</li>
+			<li>Implementation of the recursive M function (1 week):
+				<ul>
+					<li>traverse the gene tree in postorder (left subtree, right subtree, root),
+					</li>
+					<li>finding occurrences where M(parent) equals M(child 1 or 2) - this is representative for finding a duplication. If M(parent) matches neither, the processed node is a speciation.
+					</li>
+				</ul>
+			</li>
+			<li>Milestone - finished implementation of SDI for rooted fully binary trees (1/2 week):
+				<ul>
+					<li>Extensive testing,
+					</li>
+					<li>polishing and writing documentation with RDoc,
+					</li>
+					<li>cleaning up.
+					</li>
+				</ul>
+			</li>
+			<li>Milestone: Implementation of support for unrooted gene trees (1 week):
+				<ul>
+					<li>implement an algorithm which roots an unrooted gene tree by exploring all possible roots and selecting the one with minimum duplications,
+					</li>
+					<li>calculating M is the most intensive step, so we only do it once for one rooted gene tree,
+					</li>
+					<li>by moving the root one node at a time, M does not have to be calculated for every node of the gene tree, but only for two nodes:
+						<ul>
+							<li>first child of previous root, if the new root is on a brach of first child of the previous root,
+							</li>
+							<li>second child of previous root, if the new root is on a branch of second child of the previous root,
+							</li>
+							<li>and the new root.
+							</li>
+						</ul>
+					</li>
+					<li>traversing the whole gene tree one node at a time we explore all possible root placements and resulting duplications,
+					</li>
+					<li>from a group of trees with a minimal number of duplications, the shortest tree is chosen as the rooted tree,
+					</li>
+					<li>the algorithm for this is written in pseudocode in "RIO: Analyzing proteomes by automated phylogenomics using resampled inference of orthologs" by Zmasek and Eddy as "Algorithm for speciation duplication inference combined with rooting", and needs to be translated to Ruby code.
+					</li>
+				</ul>
+			</li>
+			<li>Milestone: Implementing an duplication/loss inference algorithm for non-binary species trees (described by Vernot, 2008) (2 weeks):
+				<ul>
+					<li>implement function roofN(g), which returns all roots of subtrees of the parent of "s" (s = M(g)) in which descendants of g must be present,
+					</li>
+					<li>if the intersection of roofN(left child of g) and roofN(right child of g) is not NULL, then g is a required multiplication,
+					</li>
+					<li>else if the intersection of roofN(left child of g) and roofN(right child of g) is NULL, then it is impossible to tell whether the event was a duplication or a deep coalescence, the event is thus called a conditional duplication,
+					</li>
+					<li>implement function N(g), which returns all of the children of M(g), where descendants of g were present in descendants of each element in N(g),
+					</li>
+					<li>implementing a prediction of gene loss events by assuming that minimizing gene losses gives the biologically most likely prediction by taking into account the following rules, which minimize explicit loses by predicting each loss as close as possible to the root of the gene tree:
+						<ul>
+							<li>Binary duplication loss: if p(g) is a required duplication then, if M(p(g)) != M(g) then species in (N(p(g)) without roofN(g)) are lost on edge e between p(g) and g.
+							</li>
+							<li>Skipped species loss: if M(g) != M(p(g)) and p(M(g)) != M(p(g)) then we can infer a loss at every skipped species between M(p(g) and M(g).
+							</li>
+							<li>Polytomy duplication loss: if M(p(g) is a polytomy and p(g) is a required duplication, then species (N(p(g)) without roofN(g)) are lost at e(p(g),g).
+							</li>
+							<li>Polytomy speciation loss: if M(g) != M(p(g) and M(g) is a polytomy, then all children of M(g) should have a descendant of g.
+							</li>
+						</ul>
+					</li>
+					<li>the algorithm for this is written in pseudocode in "Reconciliation with non-binary species tree" by Vernot as "Algorithm 5.1", which has to be translated to Ruby code.
+					</li>
+				</ul>
+			</li>
+			<li>Implementing support for non-binary gene trees (2 weeks):
+				<ul>
+					<li>gene trees are by definition binary, but some methods produce uncertainties which result in multifurcating gene trees,
+					</li>
+					<li>we can support non-binary gene trees by expanding multifurcating nodes to arbitrary binary trees and then optimizing the generated tree for duplications and losses with a previously developed algorithm,
+					</li>
+					<li>this approach is described in "A Hybrid Micro–Macroevolutionary Approach to Gene Tree Reconstruction" by Durand, which contains several pseudocode algorithms that can be ported to Ruby.
+					</li>
+				</ul>
+			</li>
+		</ol>
+	</li>
+	<li>
+		<strong>Why me?</strong>
+		<p>
+			I like to set foot on unknown territory and challenge myself constantly. I have long searched for something that would connect my love of medicine to my love of programming, and now, thanks to GSoC and OBF, I think I found it - bioinformatics. I am at a stage of my medical study, where I have to decide what my future will entail, and I am (now, after thinking about it for a long time) positive that bioinformatics will be a big part of it. What better way to get future off to a good start, than with a Google Summer of Code project? Based on this enthusiasm alone you can be assured that I'll work really hard on this project and that I will be happy to see it done. As this would be my first serious open source engagement, you also have a chance of forming a completely new addition to the open source world and making a good contributor out of me.
+		</p>
+	</li>
+	<li>
+		<strong>Previous experience</strong>
+		<ol>
+			<li>
+				<p>
+					I have been working on a simulation of an analytical chemistry method for the past 2 years now, more specifically we have modeled laser ablation + inductively coupled plasma mass spectrometry with a simple model, which aids our elemental mapping projects. For the write-up of this project I have been awarded with a "Prešernovo priznanje" in 2008 (PDF upon request). This work entails several interesting components, from basics such as: C# development, image input, output, multi-threaded programming, UI development; to complex themes such as: genetic algorithms and neural networks. All of which I learned as we worked on the project without much hassle (source code upon request). This work is not yet open source, because we are in the finalizing stages of the paper and will release the source code after publication under an open source license.
+				</p>
+			</li>
+			<li>
+				<p>
+					I have programmed since I was a child and I have developed a wide specter of things in my lifetime (from a full CMS in PHP to an IRC robot, source code upon request), but I have little experience in fully open source projects, which I think so highly of.
+				</p>
+			</li>
+		</ol>
+	</li>
+	<li>
+		<strong>Short biography</strong>
+		<p>
+			My name is Jure Triglav and I'm a 24 year old medical student from Ljubljana, Slovenia. I was born in a small town of Murska Sobota in Slovenia, where I went to grade school (graded excellent for all years, awarded "Zoisova štipendija" for the gifted, which I still hold) and high-school (excellent, finished as "Zlati maturant" in the company of about 200 best students in the country). I moved to Ljubljana in 2004 to study medicine. I am now in the last (6th) year of my medical study which I find challenging and very interesting. <br>
+			My hobbies are all over the place, from book design to photography, from web design to typography, from guitar to poetry, from reading to programming, from traveling to sports.
+		</p>
+	</li>
+	<li>
+		<strong>Other obligations for the summer</strong>
+		<p>
+			I am attending a conference for young scientists in the field of analytical chemistry, or YISAC, which is taking place in Venice from the 29th of June to the 1st of July 2010. Other than this, I have no work, study or vacation obligations for the duration of Google Summer of Code 2010.
+		</p>
+	</li>
+</ol>
