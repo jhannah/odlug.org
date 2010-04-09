@@ -23,11 +23,11 @@
 		<ol>
 			<li>Implement the algorithm as described by Zmasek and Eddy in "A simple algorithm to infer gene duplication and speciation events on a gene tree", or SDI, which is designed to work on rooted gene trees and fully binary gene and species tree.
 			</li>
-			<li>Allow rooting of unrooted gene trees by minimizing sum of duplications as described by Zmasek and Eddy in "RIO: Analyzing proteomes by automated phylogenomics using resampled inference of orthologs", and thus extending the implementation to support unrooted gene trees.
+			<li>Allow rooting of unrooted gene trees by minimizing sum of inferred duplications as described by Zmasek and Eddy in "RIO: Analyzing proteomes by automated phylogenomics using resampled inference of orthologs", and thus extending the implementation to support unrooted gene trees.
 			</li>
 			<li>Extend the algorithm to support non&#45;binary species tree as described by Vernot in "Reconciliation with non&#45;binary species tree".
 			</li>
-			<li>Extend the algorithm to support non&#45;binary gene trees as described by Durand in "A Hybrid Micro&#45;Macroevolutionary Approach to Gene Tree Reconstruction". (I consider this goal an optional one, since this is the least defined problem of this group of problems, and will be implemented only if time permits).
+			<li>Optional: Extend the algorithm to support non&#45;binary gene trees as described by Durand in "A Hybrid Micro&#45;Macroevolutionary Approach to Gene Tree Reconstruction". (I consider this goal an optional one, since this is the least defined problem of this group of problems, and will be implemented only if time permits).
 			</li>
 		</ol>
 		</p>
@@ -90,7 +90,7 @@
 				</ul>
 			</li>
 			<br>
-			<li><strong>Implementation of the recursive M calculation (1 week):</strong>
+			<li><strong>Implementation of the recursive calculation of M (1 week):</strong>
 				<ul>
 					<li>The M function is a mapping function, that maps a node (g) in a gene tree to a node in a species tree (s). M(g) maps to the lowest node (ancestral species) in species tree, whose descendants are a superset of species, carrying descendant genes of node g, as described in by Goodman, 1979 in "Fitting the gene lineage into its species lineage, a parsimony strategy illustrated by cladograms constructed from globin sequences",</li>  
 					<li>finding occurrences where M(parent) equals M(child 1 or 2) &ndash; this is representative for finding a duplication. If M(parent) matches neither, the given gene node is a speciation,
@@ -179,6 +179,7 @@
 		<strong>Why me?</strong>
 		<p>
 			I like to set foot on unknown territory and challenge myself constantly. I have long searched for something that would connect my love of medicine to my love of programming, and now, thanks to GSoC and OBF, I think I found it &ndash; bioinformatics. I am at a stage of my medical study, where I have to decide what my future will entail, and I am (now, after thinking about it for a long time) positive that bioinformatics will be a big part of it. What better way to get future off to a good start, than with a Google Summer of Code project? Based on this enthusiasm alone you can be assured that I'll work really hard on this project and that I will be happy to see it done. As this would be my first serious open source engagement, you also have a chance of forming a completely new addition to the open source world and making a good contributor out of me.
+			I would also take this opportunity to become more a more experienced Ruby developer, as I have only started learning Ruby in the beginning of this year. I do believe that I have the necessary skill set to tackle this problem and whatever knowledge I turn out to be lacking, I can quickly pick up along the way.  
 		</p>
 	</li>
 	<li>
@@ -200,7 +201,7 @@
 		<strong>Short biography</strong>
 		<p>
 			My name is Jure Triglav and I'm a 24 year old medical student from Ljubljana, Slovenia. I was born in a small town of Murska Sobota in Slovenia, where I went to grade school (graded excellent for all years, awarded "Zoisova &scaron;tipendija" for the gifted, which I still hold) and high&#45;school (excellent, finished as "Zlati maturant" in the company of about 200 best students in the country). I moved to Ljubljana in 2004 to study medicine. I am now in the last (6th) year of my medical study which I find challenging and very interesting. <br>
-			My hobbies are all over the place, from book design to photography, from web design to typography, from guitar to poetry, from reading to programming, from traveling to sports.
+			My hobbies are all over the place, from book design to photography, from web design to typography, from playing guitar to poetry, from reading to programming, from traveling to sports.
 		</p>
 	</li>
 	<li>
