@@ -1,0 +1,172 @@
+The chess board and pieces:
+..k.....
+ppp.pppp
+........
+.R...B..
+........
+........
+PPPPPPPP
+K.......
+ 
+Fields where white is attacking:
+00100000
+01010001
+01001010
+10111100
+01001010
+11111111
+11100000
+01000000
+ 
+Fields where black is attacking: 
+01010000
+01110000
+11111111
+00000000
+00000000
+00000000
+00000000
+00000000
+
+There is a check on the board:
+Black king is checked at 2,0.
+
+-- Next board --
+
+The chess board and pieces:
+........
+........
+........
+........
+...Q....
+........
+........
+........
+ 
+Fields where white is attacking:
+00010001
+10010010
+01010100
+00111000
+11101111
+00111000
+01010100
+10010010
+ 
+Fields where black is attacking: 
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+
+There is no check on the board.
+
+-- Next board --
+
+The chess board and pieces:
+........
+........
+........
+....N...
+.k.R....
+....P...
+........
+........
+ 
+Fields where white is attacking:
+00010000
+00010100
+00110010
+00010000
+01111111
+00010100
+00010000
+00010000
+ 
+Fields where black is attacking: 
+00000000
+00000000
+00000000
+11100000
+10100000
+11100000
+00000000
+00000000
+
+There is a check on the board:
+Black king is checked at 1,4.
+
+-- Next board --
+
+The chess board and pieces:
+rnbqk.nr
+ppp..ppp
+....p...
+...p....
+.bPP....
+.....N..
+PP..PPPP
+RNBQKB.R
+ 
+Fields where white is attacking:
+00000000
+00000000
+00000001
+01111010
+10010101
+11111111
+11111111
+01111110
+ 
+Fields where black is attacking: 
+01111110
+11111101
+11111111
+10110110
+00101001
+10100000
+00010000
+00001000
+
+There is a check on the board:
+White king is checked at 4,7.
+
+-- Next board --
+
+The chess board and pieces:
+........
+........
+........
+........
+........
+........
+........
+........
+ 
+Fields where white is attacking:
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+ 
+Fields where black is attacking: 
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+
+There is no check on the board.
+
+-- Next board --

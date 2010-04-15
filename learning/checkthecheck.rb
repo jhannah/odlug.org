@@ -644,6 +644,5 @@ parser = ChessBoardParser.new(lines_of_text)
 #Status report for all inputed boards
 parser.boards.each do |chess_board|
  puts chess_board.status
- p chess_board.is_there_a_check
 end
     
