@@ -28,69 +28,80 @@ class ChessBoard
     self.check_the_check    
   end
   
-  def find_white_attacks
-    @fields_where_white_attacks = Array.new(8).map!{Array.new(8,0)}
+  def find_attacks(color)
+    # Contains black and white attacks
+    @fields_with_attacks = Array.new(8).map!{Array.new(8,0)}
     
     # Column
     x = 0
     # Row
     y = 0 
     
+    if(color == "white")
+      pieces_regex = /[A-Z]/
+      # White pawns move up
+      pawn_move = -1
+    elsif(color == "black")
+      pieces_regex = /[a-z]/
+      # Black pawns move down
+      pawn_move = 1
+    end
+        
     @board.each do |line|
       line.each do |field|
         
         unless field == '.'
-          if field.match(/[A-Z]/) != nil
+          if field.match(pieces_regex) != nil
               # If the chess piece is a p = pawn.
-              if field.downcase == "p"
+              if field.downcase == "p"                
                 #Left, top
                 if(x - 1 >= 0 && y - 1 >= 0) 
-                  @fields_where_white_attacks[y - 1][x - 1] = 1
+                  @fields_with_attacks[y + pawn_move][x - 1] = 1
                 end
                 #Right, top
                 if(x + 1 < 8 && y - 1 >= 0) 
-                  @fields_where_white_attacks[y - 1][x + 1] = 1
+                  @fields_with_attacks[y + pawn_move][x + 1] = 1
                 end
                 
               # If the chess piece is a k = king.
               elsif field.downcase == "k"
                 if(x - 1 >= 0) 
                   #Left
-                  @fields_where_white_attacks[y][x - 1] = 1
+                  @fields_with_attacks[y][x - 1] = 1
                   if(y - 1 >= 0) 
                     #Top
-                    @fields_where_white_attacks[y - 1][x] = 1
+                    @fields_with_attacks[y - 1][x] = 1
                     #Top left
-                    @fields_where_white_attacks[y - 1][x - 1] = 1  
+                    @fields_with_attacks[y - 1][x - 1] = 1  
                   end
                   if(y + 1 < 8)
                     #Bottom
-                    @fields_where_white_attacks[y + 1][x] = 1
+                    @fields_with_attacks[y + 1][x] = 1
                     #Bottom left
-                    @fields_where_white_attacks[y + 1][x - 1] = 1
+                    @fields_with_attacks[y + 1][x - 1] = 1
                   end
                 end
                 if(x == 0 || x == 7)
                   if(y - 1 >= 0) 
                     #Top
-                    @fields_where_white_attacks[y - 1][x] = 1
+                    @fields_with_attacks[y - 1][x] = 1
                   end
                   if(y + 1 < 8)
                     #Bottom
-                    @fields_where_white_attacks[y + 1][x] = 1
+                    @fields_with_attacks[y + 1][x] = 1
                   end
                 end
                 
                 if(x + 1 < 8)
                    #Right
-                   @fields_where_white_attacks[y][x + 1] = 1
+                   @fields_with_attacks[y][x + 1] = 1
                    if(y - 1 > 0) 
                      #Top right
-                     @fields_where_white_attacks[y - 1][x + 1] = 1  
+                     @fields_with_attacks[y - 1][x + 1] = 1  
                    end
                    if(y + 1 < 8)
                      #Bottom left
-                     @fields_where_white_attacks[y + 1][x + 1] = 1
+                     @fields_with_attacks[y + 1][x + 1] = 1
                    end
                 end
               # If the piece is a n = knight
@@ -110,44 +121,44 @@ class ChessBoard
                 if(x - 2 >= 0)
                   if(y - 1 >= 0)
                      # Left top jump
-                     @fields_where_white_attacks[y - 1][x - 2] = 1
+                     @fields_with_attacks[y - 1][x - 2] = 1
                   end
                   if(y + 1 < 8)
                     # Left bottom jump
-                     @fields_where_white_attacks[y + 1][x - 2] = 1
+                     @fields_with_attacks[y + 1][x - 2] = 1
                    end
                 end
                 # Right jump
                 if(x + 2 < 8)
                   if(y - 1 >= 0)
                     # Right top jump 
-                    @fields_where_white_attacks[y - 1][x + 2] = 1
+                    @fields_with_attacks[y - 1][x + 2] = 1
                   end
                   if(y + 1 < 8)
                     # Right bottom jump
-                     @fields_where_white_attacks[y + 1][x + 2] = 1
+                     @fields_with_attacks[y + 1][x + 2] = 1
                   end
                 end
                 # Top jump
                 if(y - 2 >= 0)
                   if(x - 1 >= 0)
                     # Top left jump
-                    @fields_where_white_attacks[y - 2][x - 1] = 1
+                    @fields_with_attacks[y - 2][x - 1] = 1
                   end
                   if(x + 1 < 8)
                     # Top right jump
-                    @fields_where_white_attacks[y - 2][x + 1] = 1
+                    @fields_with_attacks[y - 2][x + 1] = 1
                   end
                 end
                 # Bottom jump
                 if(y + 2 < 8)
                     if(x - 1 >= 0)
                       # Bottom left jump
-                      @fields_where_white_attacks[y + 2][x - 1] = 1
+                      @fields_with_attacks[y + 2][x - 1] = 1
                     end
                     if(x + 1 < 8)
                       # Bottom right jump
-                      @fields_where_white_attacks[y + 2][x + 1] = 1
+                      @fields_with_attacks[y + 2][x + 1] = 1
                     end
                 end
                     
@@ -175,11 +186,11 @@ class ChessBoard
 
                   if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
                     if blocking_attack == 0
-                      @fields_where_white_attacks[y_attack][x_attack] = 1
+                      @fields_with_attacks[y_attack][x_attack] = 1
                     end
                     blocking_attack = 1
                   else
-                    @fields_where_white_attacks[y_attack][x_attack] = 1
+                    @fields_with_attacks[y_attack][x_attack] = 1
                   end
                 end
                 # -- resetting position --
@@ -194,11 +205,11 @@ class ChessBoard
                   y_attack += 1
                   if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
                     if blocking_attack == 0
-                      @fields_where_white_attacks[y_attack][x_attack] = 1
+                      @fields_with_attacks[y_attack][x_attack] = 1
                     end
                     blocking_attack = 1
                   else
-                    @fields_where_white_attacks[y_attack][x_attack] = 1
+                    @fields_with_attacks[y_attack][x_attack] = 1
                   end
                 end
 
@@ -214,11 +225,11 @@ class ChessBoard
                   y_attack -= 1
                   if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
                     if blocking_attack == 0
-                      @fields_where_white_attacks[y_attack][x_attack] = 1
+                      @fields_with_attacks[y_attack][x_attack] = 1
                     end
                     blocking_attack = 1
                   else
-                    @fields_where_white_attacks[y_attack][x_attack] = 1
+                    @fields_with_attacks[y_attack][x_attack] = 1
                   end
                 end
 
@@ -234,11 +245,11 @@ class ChessBoard
                   y_attack += 1
                   if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
                     if blocking_attack == 0
-                      @fields_where_white_attacks[y_attack][x_attack] = 1
+                      @fields_with_attacks[y_attack][x_attack] = 1
                     end
                     blocking_attack = 1
                   else
-                    @fields_where_white_attacks[y_attack][x_attack] = 1
+                    @fields_with_attacks[y_attack][x_attack] = 1
                   end
                 end
                  
@@ -264,11 +275,11 @@ class ChessBoard
                 x_attack -= 1
                 if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
                   if blocking_attack == 0
-                    @fields_where_white_attacks[y_attack][x_attack] = 1
+                    @fields_with_attacks[y_attack][x_attack] = 1
                   end
                   blocking_attack = 1
                 else
-                  @fields_where_white_attacks[y_attack][x_attack] = 1
+                  @fields_with_attacks[y_attack][x_attack] = 1
                 end
               end
               
@@ -283,11 +294,11 @@ class ChessBoard
                 x_attack += 1
                 if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
                   if blocking_attack == 0
-                    @fields_where_white_attacks[y_attack][x_attack] = 1
+                    @fields_with_attacks[y_attack][x_attack] = 1
                   end
                   blocking_attack = 1
                 else
-                  @fields_where_white_attacks[y_attack][x_attack] = 1
+                  @fields_with_attacks[y_attack][x_attack] = 1
                 end
               end
               
@@ -302,11 +313,11 @@ class ChessBoard
                 y_attack -= 1
                 if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
                   if blocking_attack == 0
-                    @fields_where_white_attacks[y_attack][x_attack] = 1
+                    @fields_with_attacks[y_attack][x_attack] = 1
                   end
                   blocking_attack = 1
                 else
-                  @fields_where_white_attacks[y_attack][x_attack] = 1
+                  @fields_with_attacks[y_attack][x_attack] = 1
                 end
               end
               
@@ -322,11 +333,11 @@ class ChessBoard
                 y_attack += 1
                 if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
                   if blocking_attack == 0
-                    @fields_where_white_attacks[y_attack][x_attack] = 1
+                    @fields_with_attacks[y_attack][x_attack] = 1
                   end
                   blocking_attack = 1
                 else
-                  @fields_where_white_attacks[y_attack][x_attack] = 1
+                  @fields_with_attacks[y_attack][x_attack] = 1
                 end
               end
               
@@ -343,11 +354,11 @@ class ChessBoard
                 x_attack -= 1
                 if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
                   if blocking_attack == 0
-                    @fields_where_white_attacks[y_attack][x_attack] = 1
+                    @fields_with_attacks[y_attack][x_attack] = 1
                   end
                   blocking_attack = 1
                 else
-                  @fields_where_white_attacks[y_attack][x_attack] = 1
+                  @fields_with_attacks[y_attack][x_attack] = 1
                 end
               end
               
@@ -362,11 +373,11 @@ class ChessBoard
                 x_attack += 1
                 if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
                   if blocking_attack == 0
-                    @fields_where_white_attacks[y_attack][x_attack] = 1
+                    @fields_with_attacks[y_attack][x_attack] = 1
                   end
                   blocking_attack = 1
                 else
-                  @fields_where_white_attacks[y_attack][x_attack] = 1
+                  @fields_with_attacks[y_attack][x_attack] = 1
                 end
               end
               
@@ -381,11 +392,11 @@ class ChessBoard
                 y_attack -= 1
                 if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
                   if blocking_attack == 0
-                    @fields_where_white_attacks[y_attack][x_attack] = 1
+                    @fields_with_attacks[y_attack][x_attack] = 1
                   end
                   blocking_attack = 1
                 else
-                  @fields_where_white_attacks[y_attack][x_attack] = 1
+                  @fields_with_attacks[y_attack][x_attack] = 1
                 end
               end
               
@@ -401,11 +412,11 @@ class ChessBoard
                 y_attack += 1
                 if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
                   if blocking_attack == 0
-                    @fields_where_white_attacks[y_attack][x_attack] = 1
+                    @fields_with_attacks[y_attack][x_attack] = 1
                   end
                   blocking_attack = 1
                 else
-                  @fields_where_white_attacks[y_attack][x_attack] = 1
+                  @fields_with_attacks[y_attack][x_attack] = 1
                 end
               end
               
@@ -422,11 +433,11 @@ class ChessBoard
 
                 if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
                   if blocking_attack == 0
-                    @fields_where_white_attacks[y_attack][x_attack] = 1
+                    @fields_with_attacks[y_attack][x_attack] = 1
                   end
                   blocking_attack = 1
                 else
-                  @fields_where_white_attacks[y_attack][x_attack] = 1
+                  @fields_with_attacks[y_attack][x_attack] = 1
                 end
               end
               # -- resetting position --
@@ -441,11 +452,11 @@ class ChessBoard
                 y_attack += 1
                 if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
                   if blocking_attack == 0
-                    @fields_where_white_attacks[y_attack][x_attack] = 1
+                    @fields_with_attacks[y_attack][x_attack] = 1
                   end
                   blocking_attack = 1
                 else
-                  @fields_where_white_attacks[y_attack][x_attack] = 1
+                  @fields_with_attacks[y_attack][x_attack] = 1
                 end
               end
 
@@ -461,11 +472,11 @@ class ChessBoard
                 y_attack -= 1
                 if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
                   if blocking_attack == 0
-                    @fields_where_white_attacks[y_attack][x_attack] = 1
+                    @fields_with_attacks[y_attack][x_attack] = 1
                   end
                   blocking_attack = 1
                 else
-                  @fields_where_white_attacks[y_attack][x_attack] = 1
+                  @fields_with_attacks[y_attack][x_attack] = 1
                 end
               end
 
@@ -481,11 +492,11 @@ class ChessBoard
                 y_attack += 1
                 if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
                   if blocking_attack == 0
-                    @fields_where_white_attacks[y_attack][x_attack] = 1
+                    @fields_with_attacks[y_attack][x_attack] = 1
                   end
                   blocking_attack = 1
                 else
-                  @fields_where_white_attacks[y_attack][x_attack] = 1
+                  @fields_with_attacks[y_attack][x_attack] = 1
                 end
               end
               
@@ -498,480 +509,17 @@ class ChessBoard
       y += 1
       x = 0
     end
-  end
-  
-  def find_black_attacks
-    @fields_where_black_attacks = Array.new(8).map!{Array.new(8,0)}
     
-    # Column
-    x = 0
-    # Row
-    y = 0 
-    
-    @board.each do |line|
-      line.each do |field|
-        
-        unless field == '.'
-          if field.match(/[a-z]/) != nil
-              # If the chess piece is a p = pawn.
-              if field.downcase == "p"
-                #Left, top
-                if(x - 1 >= 0 && y + 1 < 8) 
-                  @fields_where_black_attacks[y + 1][x - 1] = 1
-                end
-                #Right, top
-                if(x + 1 < 8 && y + 1 < 8) 
-                  @fields_where_black_attacks[y + 1][x + 1] = 1
-                end
-                
-              # If the chess piece is a k = king.
-              elsif field.downcase == "k"
-                if(x - 1 >= 0) 
-                  #Left
-                  @fields_where_black_attacks[y][x - 1] = 1
-                  if(y - 1 >= 0) 
-                    #Top
-                    @fields_where_black_attacks[y - 1][x] = 1
-                    #Top left
-                    @fields_where_black_attacks[y - 1][x - 1] = 1  
-                  end
-                  if(y + 1 < 8)
-                    #Bottom
-                    @fields_where_black_attacks[y + 1][x] = 1
-                    #Bottom left
-                    @fields_where_black_attacks[y + 1][x - 1] = 1
-                  end
-                end
-                if(x == 0 || x == 7)
-                  if(y - 1 >= 0) 
-                    #Top
-                    @fields_where_black_attacks[y - 1][x] = 1
-                  end
-                  if(y + 1 < 8)
-                    #Bottom
-                    @fields_where_black_attacks[y + 1][x] = 1
-                  end
-                end
-                
-                if(x + 1 < 8)
-                   #Right
-                   @fields_where_black_attacks[y][x + 1] = 1
-                   if(y - 1 > 0) 
-                     #Top right
-                     @fields_where_black_attacks[y - 1][x + 1] = 1  
-                   end
-                   if(y + 1 < 8)
-                     #Bottom left
-                     @fields_where_black_attacks[y + 1][x + 1] = 1
-                   end
-                end
-              # If the piece is a n = knight
-
-              # Attacking fields:
-              #[0, 0, 0, 0, 0, 0, 0, 0]
-              #[0, 0, 0, 0, 0, 0, 0, 0]
-              #[0, 0, 1, 0, 1, 0, 0, 0]
-              #[0, 1, 0, 0, 0, 1, 0, 0]
-              #[0, 0, 0, N, 0, 0, 0, 0]
-              #[0, 1, 0, 0, 0, 1, 0, 0]
-              #[0, 0, 1, 0, 1, 0, 0, 0]
-              #[0, 0, 0, 0, 0, 0, 0, 0]        
-      
-              elsif field.downcase == "n"
-                # Left jump
-                if(x - 2 >= 0)
-                  if(y - 1 >= 0)
-                     # Left top jump
-                     @fields_where_black_attacks[y - 1][x - 2] = 1
-                  end
-                  if(y + 1 < 8)
-                    # Left bottom jump
-                     @fields_where_black_attacks[y + 1][x - 2] = 1
-                   end
-                end
-                # Right jump
-                if(x + 2 < 8)
-                  if(y - 1 >= 0)
-                    # Right top jump 
-                    @fields_where_black_attacks[y - 1][x + 2] = 1
-                  end
-                  if(y + 1 < 8)
-                    # Right bottom jump
-                     @fields_where_black_attacks[y + 1][x + 2] = 1
-                  end
-                end
-                # Top jump
-                if(y - 2 >= 0)
-                  if(x - 1 >= 0)
-                    # Top left jump
-                    @fields_where_black_attacks[y - 2][x - 1] = 1
-                  end
-                  if(x + 1 < 8)
-                    # Top right jump
-                    @fields_where_black_attacks[y - 2][x + 1] = 1
-                  end
-                end
-                # Bottom jump
-                if(y + 2 < 8)
-                    if(x - 1 >= 0)
-                      # Bottom left jump
-                      @fields_where_black_attacks[y + 2][x - 1] = 1
-                    end
-                    if(x + 1 < 8)
-                      # Bottom right jump
-                      @fields_where_black_attacks[y + 2][x + 1] = 1
-                    end
-                end
-                    
-              # If the chess piece is a b = bishop. 
-              
-              # Attacking fields:
-              #[0, 0, 0, 0, 0, 0, 0, 1]
-              #[1, 0, 0, 0, 0, 0, 1, 0]
-              #[0, 1, 0, 0, 0, 1, 0, 0]
-              #[0, 0, 1, 0, 1, 0, 0, 0]
-              #[0, 0, 0, B, 0, 0, 0, 0]
-              #[0, 0, 1, 0, 1, 0, 0, 0]
-              #[0, 1, 0, 0, 0, 1, 0, 0]
-              #[1, 0, 0, 0, 0, 0, 1, 0]
-              
-              elsif field.downcase == "b"
-                x_attack = x
-                y_attack = y
-                blocking_attack = 0
-
-                #Top right branch
-                while (x_attack + 1) < 8 && (y_attack - 1) >= 0 do  
-                  x_attack += 1
-                  y_attack -= 1
-
-                  if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
-                    if blocking_attack == 0
-                      @fields_where_black_attacks[y_attack][x_attack] = 1
-                    end
-                    blocking_attack = 1
-                  else
-                    @fields_where_black_attacks[y_attack][x_attack] = 1
-                  end
-                end
-                # -- resetting position --
-                x_attack = x
-                y_attack = y
-                blocking_attack = 0
-                # -- --
-
-                #Bottom right branch
-                while (x_attack + 1) < 8 && (y_attack + 1) < 8 do
-                  x_attack += 1
-                  y_attack += 1
-                  if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
-                    if blocking_attack == 0
-                      @fields_where_black_attacks[y_attack][x_attack] = 1
-                    end
-                    blocking_attack = 1
-                  else
-                    @fields_where_black_attacks[y_attack][x_attack] = 1
-                  end
-                end
-
-                # -- resetting position --
-                x_attack = x
-                y_attack = y
-                blocking_attack = 0
-                # -- --
-
-                #Top left branch
-                while (x_attack - 1 >= 0) && (y_attack - 1) >= 0 do
-                  x_attack -= 1
-                  y_attack -= 1
-                  if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
-                    if blocking_attack == 0
-                      @fields_where_black_attacks[y_attack][x_attack] = 1
-                    end
-                    blocking_attack = 1
-                  else
-                    @fields_where_black_attacks[y_attack][x_attack] = 1
-                  end
-                end
-
-                # -- resetting position --
-                x_attack = x
-                y_attack = y
-                blocking_attack = 0
-                # -- --
-
-                #Bottom left branch  
-                while (x_attack - 1 >= 0) && (y_attack + 1) < 8 do
-                  x_attack -= 1
-                  y_attack += 1
-                  if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
-                    if blocking_attack == 0
-                      @fields_where_black_attacks[y_attack][x_attack] = 1
-                    end
-                    blocking_attack = 1
-                  else
-                    @fields_where_black_attacks[y_attack][x_attack] = 1
-                  end
-                end
-                 
-            # If the piece is a r = rook
-            
-            # Attacking fields:
-            #[0, 0, 0, 1, 0, 0, 0, 0]
-            #[0, 0, 0, 1, 0, 0, 0, 0]
-            #[0, 0, 0, 1, 0, 0, 0, 0]
-            #[0, 0, 0, 1, 0, 0, 0, 0]
-            #[1, 1, 1, 0, 1, 1, 1, 1]
-            #[0, 0, 0, 1, 0, 0, 0, 0]
-            #[0, 0, 0, 1, 0, 0, 0, 0]
-            #[0, 0, 0, 1, 0, 0, 0, 0]
-            
-            elsif field.downcase == "r"
-              x_attack = x
-              y_attack = y
-              blocking_attack = 0
-              
-              # Left
-              while(x_attack - 1 >= 0) do
-                x_attack -= 1
-                if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
-                  if blocking_attack == 0
-                    @fields_where_black_attacks[y_attack][x_attack] = 1
-                  end
-                  blocking_attack = 1
-                else
-                  @fields_where_black_attacks[y_attack][x_attack] = 1
-                end
-              end
-              
-              # -- resetting position --
-              x_attack = x
-              y_attack = y
-              blocking_attack = 0
-              # -- --
-              
-              # Right
-              while(x_attack + 1 < 8) do
-                x_attack += 1
-                if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
-                  if blocking_attack == 0
-                    @fields_where_black_attacks[y_attack][x_attack] = 1
-                  end
-                  blocking_attack = 1
-                else
-                  @fields_where_black_attacks[y_attack][x_attack] = 1
-                end
-              end
-              
-              # -- resetting position --
-              x_attack = x
-              y_attack = y
-              blocking_attack = 0
-              # -- --
-              
-              # Up
-              while(y_attack - 1 >= 0) do
-                y_attack -= 1
-                if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
-                  if blocking_attack == 0
-                    @fields_where_black_attacks[y_attack][x_attack] = 1
-                  end
-                  blocking_attack = 1
-                else
-                  @fields_where_black_attacks[y_attack][x_attack] = 1
-                end
-              end
-              
-              # -- resetting position --
-              x_attack = x
-              y_attack = y
-              blocking_attack = 0
-              # -- --
-              
-              # Down
-              
-              while(y_attack + 1 < 8) do
-                y_attack += 1
-                if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
-                  if blocking_attack == 0
-                    @fields_where_black_attacks[y_attack][x_attack] = 1
-                  end
-                  blocking_attack = 1
-                else
-                  @fields_where_black_attacks[y_attack][x_attack] = 1
-                end
-              end
-              
-            # If the piece is a q = queen.
-            elsif field.downcase == "q"
-              # -- resetting position --
-              x_attack = x
-              y_attack = y
-              blocking_attack = 0
-              # -- --
-              
-              # Left
-              while(x_attack - 1 >= 0) do
-                x_attack -= 1
-                if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
-                  if blocking_attack == 0
-                    @fields_where_black_attacks[y_attack][x_attack] = 1
-                  end
-                  blocking_attack = 1
-                else
-                  @fields_where_black_attacks[y_attack][x_attack] = 1
-                end
-              end
-              
-              # -- resetting position --
-              x_attack = x
-              y_attack = y
-              blocking_attack = 0
-              # -- --
-              
-              # Right
-              while(x_attack + 1 < 8) do
-                x_attack += 1
-                if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
-                  if blocking_attack == 0
-                    @fields_where_black_attacks[y_attack][x_attack] = 1
-                  end
-                  blocking_attack = 1
-                else
-                  @fields_where_black_attacks[y_attack][x_attack] = 1
-                end
-              end
-              
-              # -- resetting position --
-              x_attack = x
-              y_attack = y
-              blocking_attack = 0
-              # -- --
-              
-              # Up
-              while(y_attack - 1 >= 0) do
-                y_attack -= 1
-                if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
-                  if blocking_attack == 0
-                    @fields_where_black_attacks[y_attack][x_attack] = 1
-                  end
-                  blocking_attack = 1
-                else
-                  @fields_where_black_attacks[y_attack][x_attack] = 1
-                end
-              end
-              
-              # -- resetting position --
-              x_attack = x
-              y_attack = y
-              blocking_attack = 0
-              # -- --
-              
-              # Down
-              
-              while(y_attack + 1 < 8) do
-                y_attack += 1
-                if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
-                  if blocking_attack == 0
-                    @fields_where_black_attacks[y_attack][x_attack] = 1
-                  end
-                  blocking_attack = 1
-                else
-                  @fields_where_black_attacks[y_attack][x_attack] = 1
-                end
-              end
-              
-              # -- resetting position --
-              x_attack = x
-              y_attack = y
-              blocking_attack = 0
-              # -- --
-              
-              #Top right branch
-              while (x_attack + 1) < 8 && (y_attack - 1) >= 0 do  
-                x_attack += 1
-                y_attack -= 1
-
-                if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
-                  if blocking_attack == 0
-                    @fields_where_black_attacks[y_attack][x_attack] = 1
-                  end
-                  blocking_attack = 1
-                else
-                  @fields_where_black_attacks[y_attack][x_attack] = 1
-                end
-              end
-              # -- resetting position --
-              x_attack = x
-              y_attack = y
-              blocking_attack = 0
-              # -- --
-
-              #Bottom right branch
-              while (x_attack + 1) < 8 && (y_attack + 1) < 8 do
-                x_attack += 1
-                y_attack += 1
-                if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
-                  if blocking_attack == 0
-                    @fields_where_black_attacks[y_attack][x_attack] = 1
-                  end
-                  blocking_attack = 1
-                else
-                  @fields_where_black_attacks[y_attack][x_attack] = 1
-                end
-              end
-
-              # -- resetting position --
-              x_attack = x
-              y_attack = y
-              blocking_attack = 0
-              # -- --
-
-              #Top left branch
-              while (x_attack - 1 >= 0) && (y_attack - 1) >= 0 do
-                x_attack -= 1
-                y_attack -= 1
-                if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
-                  if blocking_attack == 0
-                    @fields_where_black_attacks[y_attack][x_attack] = 1
-                  end
-                  blocking_attack = 1
-                else
-                  @fields_where_black_attacks[y_attack][x_attack] = 1
-                end
-              end
-
-              # -- resetting position --
-              x_attack = x
-              y_attack = y
-              blocking_attack = 0
-              # -- --
-
-              #Bottom left branch  
-              while (x_attack - 1 >= 0) && (y_attack + 1) < 8 do
-                x_attack -= 1
-                y_attack += 1
-                if @board[y_attack][x_attack].match(/\w/) != nil || blocking_attack == 1
-                  if blocking_attack == 0
-                    @fields_where_black_attacks[y_attack][x_attack] = 1
-                  end
-                  blocking_attack = 1
-                else
-                  @fields_where_black_attacks[y_attack][x_attack] = 1
-                end
-              end
-              
-            end
-          end     
-        end
-
-        x += 1
-      end
-      y += 1
-      x = 0
+    # Save fields where either color is attacking to the correct instance variable
+    if(color == "white")
+      @fields_where_white_attacks = @fields_with_attacks
+    elsif(color == "black")
+      @fields_where_black_attacks = @fields_with_attacks
     end
+    
   end
   
+  # Checks if there is a king of the oposite color present on a field with a known attack.  
   def find_king_in_check
     x = 0
     y = 0
@@ -1005,21 +553,42 @@ class ChessBoard
     
 # The magic, checking if white or black player is checked.  
   def check_the_check
-    self.find_white_attacks
-    self.find_black_attacks
+    self.find_attacks("white")
+    self.find_attacks("black")
     self.find_king_in_check
-    p "The chess board and pieces:"
-    print_board @board
-    p "Fields where white is attacking:"
-    print_board @fields_where_white_attacks
-    p "Fields where black is attacking:"
-    print_board @fields_where_black_attacks
-    if @check != nil
-      p "There is a check on the board:"
-      p @check
+  end
+  
+  # Debug printing
+  def print_board(board)
+    board_display = ""
+    board.each do |element|
+       board_display << element.to_s
+       board_display << "\n"   
+    end
+    return board_display
+  end
+  
+# Status of check on the board. Prints out boards and attacked fields. Also returns check the check results.
+def status
+  if @check != nil
+    check_status = %q{There is a check on the board:
+} + @check
     else
-      p "There is no check on the board."
-    end  
+      check_status = "There is no check on the board."
+    end
+    
+
+    status = %q{The chess board and pieces:
+} + print_board(@board) + %q{ 
+Fields where white is attacking:
+} + print_board(@fields_where_white_attacks) + %q{ 
+Fields where black is attacking: 
+} + print_board(@fields_where_black_attacks) + %q{
+} + check_status + %q{
+
+-- Next board --
+
+}
   end
 end
 
@@ -1063,20 +632,15 @@ class ChessBoardParser
   end
 end
 
-# Debug printing
-def print_board(board)
-  board.each do |element|
-    p element
-  end
-  p "--"
-end
 
 # Load the sample input. Lines 8 characters long, terminated with \n. 8 lines in a row
 # and a single \n indicates new board.
 
 lines_of_text = File.readlines("sample_input.txt")
-
 parser = ChessBoardParser.new(lines_of_text)
 
-
+#Status report for all inputed boards
+parser.boards.each do |chess_board|
+ puts chess_board.status
+end
     
