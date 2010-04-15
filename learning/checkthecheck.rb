@@ -528,6 +528,7 @@ class ChessBoard
       line.each do |field|
         if field == 1 && @board[y][x] == "k"
           @check = "Black king is checked at #{x},#{y}."
+          @is_there_a_check = 2
         end       
         x += 1
       end
@@ -542,6 +543,7 @@ class ChessBoard
       line.each do |field|
         if field == 1 && @board[y][x] == "K"
           @check = "White king is checked at #{x},#{y}."
+          @is_there_a_check = 1
         end       
         x += 1
       end
@@ -642,5 +644,6 @@ parser = ChessBoardParser.new(lines_of_text)
 #Status report for all inputed boards
 parser.boards.each do |chess_board|
  puts chess_board.status
+ p chess_board.is_there_a_check
 end
     
