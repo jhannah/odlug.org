@@ -1,0 +1,8 @@
+#lang scheme
+(define (find-primes n)
+(let loop ([primes '()] [factor 2] [n n])
+ (cond ((<= n 1) primes)   ; terminating condition
+       ((= (remainder n factor) 0) (loop (cons factor primes) factor
+(quotient n factor)))  ; found a prime factor for n
+       (else (loop primes (+ factor 1) n)))))  ; try the next candidate factor
+
