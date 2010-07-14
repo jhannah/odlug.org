@@ -1,0 +1,24 @@
+-----------   
+Task 4 - Conflicts!
+-----------
+
+In pairs of 2, workers wil be assigned one line of the file work/3.txt to modify.
+You will add your name to the end of the line. This should cause lots of conflicts
+as each line of the file will be changed by two people simultaneously.
+
+e.g.  If you are assigned row 'c', you would change this line:
+
+  cccccccccccccccjayccccccccccccc
+
+to this:
+
+  ccccccccccccjayccccccccccccccccjayhannah
+
+e.g.:
+   vi 2.txt
+   git add 2.txt
+   git commit -m "task 3 complete! woot!"
+   git push
+
+
+
