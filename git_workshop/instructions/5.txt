@@ -1,0 +1,18 @@
+-----------   
+Task 5 - A branch
+-----------
+
+Everyone will create a topic branch for task 5.
+
+Task 5 is this: Make a directory in work/ of your name, and stick a README file
+in there. But don't do this in 'master', do it in a new topic/yourname branch. 
+
+e.g.:
+   git checkout -b topic/jhannah
+   mkdir jhannah
+   touch jhannah/README
+   git add jhannah
+   git commit -a -m "oh ya, I'm a branching fiend!"
+   git push
+
+
