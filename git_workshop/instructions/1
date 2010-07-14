@@ -18,5 +18,3 @@ Create a file using your name in the root of /work. e.g.:
    git add hello.jhannah
    git commit -m "task 1 complete! woot!"
    git push
-
-jshickey modifying this file
