@@ -17,11 +17,11 @@ e.g.:
    git push origin topic/jhannah:topic/jhannah
    ...
 
-Now we'll delete the branch:
+Now we'll merge the branch:
    git checkout master
    git merge topic/jhannah
 
-Now we'll delete the branch:
+And delete it. Locally and remotely.
    git branch -d topic/jhannah
    git push origin :topic/jhannah
 
