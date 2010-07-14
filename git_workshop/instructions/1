@@ -1,5 +1,19 @@
+Everyone should work in the /work directory. 
+
+(
+   instructions/ is where each task is described. This directory should
+       not be modified during the workshop.
+   
+   admin_only/ has "checkpoint" files that the people running the workshop
+       might find handy if everything goes terribly wrong.
+)
+
+-----------   
 Task 1
 -----------
 
+Create a file using your name in the root of /work. e.g.:
+
+   touch hello.jhannah
 
 
