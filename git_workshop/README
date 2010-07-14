@@ -1,0 +1,22 @@
+Getting started...
+
+Create a github.com account.
+Register an ssh key from the client you're going to use.
+   https://github.com/account
+   SSH Public Keys
+E-mail jhannah@mutationgrid.com to become a collaborator on the ODynUG repository.
+git clone git@github.com:jhannah/odynug.git
+cd odynug/git_workshop
+
+# Test pushing up a file...
+touch TESTING
+git add TESTING 
+git commit -m "Can I push a new file?"
+git push
+...
+git rm TESTING
+git commit
+git push
+
+You should be all set...?
+
