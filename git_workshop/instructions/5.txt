@@ -9,6 +9,7 @@ in there. But don't do this in 'master', do it in a new topic/yourname branch.
 
 e.g.:
    git checkout -b topic/jhannah
+   git branch -a 
    mkdir jhannah
    touch jhannah/README
    git add jhannah
