@@ -14,6 +14,13 @@ e.g.:
    touch jhannah/README
    git add jhannah
    git commit -a -m "oh ya, I'm a branching fiend!"
-   git push
+   git push origin topic/jhannah:topic/jhannah
+   ...
+
+Now we'll delete the branch:
+   git checkout master
+   git branch -d topic/jhannah
+   git push origin :topic/jhannah
+
 
 
