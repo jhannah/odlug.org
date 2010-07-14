@@ -19,8 +19,9 @@ e.g.:
 
 Now we'll delete the branch:
    git checkout master
+   git merge topic/jhannah
+
+Now we'll delete the branch:
    git branch -d topic/jhannah
    git push origin :topic/jhannah
-
-
 
