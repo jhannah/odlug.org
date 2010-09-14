@@ -1,0 +1,52 @@
+Give linode.com your credit card number.
+Launch a Debian 5.0 instance. 
+
+Install some basics:
+   apt-get update
+   apt-get install build-essential
+   apt-get install locate
+   apt-get install git-core
+   apt-get install git-doc
+   apt-get install telnet      # port connectivity testing
+   apt-get install apache2
+
+Install the latest Perl:
+   mkdir src
+   wget http://www.cpan.org/src/perl-5.12.2.tar.gz
+   tar xvzf perl-5.12.2.tar.gz
+   cd perl-5.12.2
+   sh Configure -de
+   make
+   make test
+   make install
+   cp /usr/local/bin/perl /usr/bin/perl
+
+Install Catalyst:
+   cpan Task::Catalyst
+
+Install FastCGI:
+   http://www.iainlbc.com/2010/07/how-to-install-mod_fastcgi-on-ubuntu-lucid-10-04-lts/
+   vi /etc/apt/sources.list
+   Add these lines:
+     deb http://archive.ubuntu.com/ubuntu/ lucid main restricted multiverse
+     deb-src http://archive.ubuntu.com/ubuntu lucid main restricted multiverse
+   apt-get update
+   apt-get install libapache2-mod-fastcgi
+
+Create your Catalyst application:
+   cd /var/www/odynug/www/perl/
+   catalyst.pl ODLUG
+   chmod +rx ODLUG/script/odlug_fastcgi.pl
+
+Disable mod_default (Catalyst -> FastCGI doesn't like it)
+   rm /etc/apache2/mods-enabled/deflate.*
+
+Configure Apache for your new virtual host:
+   vi /etc/apache2/sites-available/perl.odlug.org
+   ln -s /etc/apache2/sites-available/perl.odlug.org /etc/apache2/sites-enabled/perl.odlug.org
+   /etc/init.d/apache2 restart
+
+Add a DNS entry.
+
+All done. http://perl.odlug.org! 
+
