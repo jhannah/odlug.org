@@ -1,0 +1,393 @@
+/*
+Design by Metamorphosis Design
+http://www.metamorphozis.com
+Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+a{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight:bold;
+    color: #004c42;
+    text-decoration:underline;
+}
+
+a:hover{
+    text-decoration: underline;
+    color: #000000;
+}
+
+*
+{
+    border: 0;
+    margin: 0;
+}
+
+body
+{
+    font: 12px Arial, Helvetica, sans-serif;
+    color: #000000;
+    line-height: 20px;
+    background: #04040d url(images/bg.jpg);
+    background-repeat:no-repeat;
+    background-position: top center;
+}
+
+#mainbg{
+    width: 889px;
+    margin: 0 auto;
+}
+
+#main{
+    margin: 0 auto;
+    width: 889px;
+}
+#maintop{
+    background: url(images/conbgtop.png);
+    background-repeat: no-repeat;
+    background-position: top;
+    height: 5px;
+}
+
+#header{
+
+}
+
+#logo{
+    width: 889px;
+    margin: 0 auto;
+    text-align: left;
+    padding-top: 50px;
+    height: 90px;
+}
+
+#logo a {
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    font-style: italic;
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: normal;
+
+}
+
+
+#logo H2 a{
+    font-size: 10px;
+}
+
+#buttons{
+    width: 889px;
+    height: 57px;
+    margin: 0 auto;
+}
+
+#buttons ul {
+    padding-left: 0px;
+}
+
+#buttons li {
+    display: inline;
+}
+
+#buttons a {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    display: block;
+    float: left;
+    width: 20%;
+    height: 55px;
+    padding-top: 28px;
+}
+
+#buttons a:hover, .active{
+    color: #04040d;
+}
+
+.menubg1{
+    background: url(images/menubg1.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.menubg2{
+    background: url(images/menubg2.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.menubg3{
+    background: url(images/menubg3.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.menubg4{
+    background: url(images/menubg4.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.menubg5{
+    background: url(images/menubg5.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#content{
+    background: url(images/conbg.png);
+    background-repeat: repeat-y;
+}
+
+#left{
+    width: 634px;
+    padding-left: 9px;
+}
+
+#left p{
+    padding-left:12px;
+    padding-right:12px;
+    padding-bottom: 10px;
+}
+
+.text{
+    background: url(images/text_bg.png);
+    background-repeat: no-repeat;
+    background-position: top;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+#left H1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight:normal;
+    color: #ffffff;
+    font-size: 16px;
+    height: 28px;
+    padding-top: 10px;
+    padding-left: 10px;
+    background: url(images/title_left.png);
+    background-repeat:no-repeat;
+    background-position:top;
+}
+
+.left_l{
+    float: left;
+    width: 300px;
+    padding-right: 17px;
+}
+
+.left_r{
+    float: right;
+    width: 300px;
+    padding-right: 17px;
+}
+
+.left_r p, .left_l p{
+    color: #004c42;
+    text-decoration: underline;
+}
+
+.read{
+    text-align: right;
+    margin-top:5px;
+    padding-bottom:5px;
+    padding-right: 10px;
+
+}
+
+#right .read a, #left .read a{
+    color: #004c42;
+    font-weight:bold;
+    font-style: italic;
+    padding-right:4px;
+    font-size: 12px;
+    text-decoration:none;
+    border-bottom: 1px dotted #004c42;
+}
+
+.read a:hover{
+    text-decoration:underline;
+}
+
+
+#right{
+    width: 227px;
+    float:right;
+    margin-right: 10px;
+}
+
+#right h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight:normal;
+    color: #ffffff;
+    font-size: 18px;
+    text-align:center;
+    height: 26px;
+    padding-top: 6px;
+    background: url(images/title_right1.png);
+    background-repeat:no-repeat;
+    background-position:top left;
+}
+
+#right h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight:normal;
+    color: #ffffff;
+    font-size: 18px;
+    text-align:center;
+    height: 28px;
+    padding-top: 10px;
+    background: url(images/title_right2.png);
+    background-repeat:no-repeat;
+    background-position:top left;
+}
+
+#right .categories{
+    background: url(images/categoriesbg.png);
+    padding-top: 5px;
+}
+
+#right .categories ul{
+    padding-left: 5px;
+    list-style: none;
+    padding-bottom: 20px;
+}
+
+#right .categories ul li{
+    padding-left: 0px;
+    padding-bottom: 1px;
+
+}
+
+#right .categories ul li a {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #000000;
+    text-decoration: none;
+    font-weight: normal;
+    text-align: left;
+    display: block;
+    height: 20px;
+    padding-left: 15px;
+    padding-top: 5px;
+    background: url(images/ls1.png);
+    background-repeat:no-repeat;
+    background-position:bottom left;
+}
+
+#right .categoriesbot{
+    background: url(images/categoriesbot.png);
+    background-repeat: no-repeat;
+    background-position: top;
+    height: 7px;
+    margin-bottom: 10px;
+}
+
+.news1top{
+    background: url(images/news1top.png);
+    background-repeat: no-repeat;
+    background-position: top;
+    height: 6px;
+    margin-top: 10px;
+}
+
+.news1{
+    background: url(images/news1bg.png);
+}
+
+.numleft{
+    background: url(images/bgnum.png);
+    background-repeat: no-repeat;
+    background-position: left top;
+    float:left;
+    width: 37px;
+    min-height: 37px;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    margin: 0px 8px 0px 8px;
+}
+
+.numleft p{
+    padding-top: 10px;
+}
+
+.newsright{
+    padding-left: 53px;
+    padding-right: 10px;
+}
+
+.news1bot{
+    background: url(images/news1bot.png);
+    background-repeat: no-repeat;
+    background-position: top;
+    height: 7px;
+}
+
+.news2top{
+    background: url(images/news2top.png);
+    background-repeat: no-repeat;
+    background-position: top;
+    height: 7px;
+    margin-top: 10px;
+}
+
+.news2{
+    background: url(images/news2bg.png);
+}
+
+.news2bot{
+    background: url(images/news2bot.png);
+    background-repeat: no-repeat;
+    background-position: top;
+    height: 7px;
+}
+
+#right .company{
+    line-height: 18px;
+}
+
+#right a{
+    text-decoration: underline;
+    color: #004c42;
+    font-weight:bold;
+}
+
+#right a:hover {
+    text-decoration: underline;
+}
+
+#main_bot{
+    background: url(images/conbgbot.png);
+    background-repeat: no-repeat;
+    background-position:top;
+    height: 5px;
+}
+
+#footer
+{
+    height: 40px;
+    font-size: 10px;
+    color: #ffffff;
+    padding-top: 10px;
+    text-align: center;
+    clear:both;
+}
+
+#footer a{
+    color: #ffffff;
+    font-size: 10px;
+    text-decoration: none;
+}
+.padding{
+    padding: 10px;
+    color:#FF0000;
+    font-weight: bold;
+}
