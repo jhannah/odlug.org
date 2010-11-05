@@ -58,14 +58,14 @@ body
     margin: 0 auto;
     text-align: left;
     padding-top: 50px;
-    height: 90px;
+    height: 60px;
 }
 
 #logo a {
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
     font-style: italic;
-    font-size: 16px;
+    font-size: 32px;
     color: #ffffff;
     font-weight: normal;
 
