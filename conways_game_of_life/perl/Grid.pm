@@ -72,7 +72,7 @@ sub neighbors {
 sub is_empty {
    my ($self) = @_;
    my $cnt = keys %$self;
-    print "   is_empty $cnt (" . (join ",", keys %$self ) . ")\n";
+   #print "   is_empty $cnt (" . (join ",", keys %$self ) . ")\n";
    return ($cnt == 0);
 }
 
