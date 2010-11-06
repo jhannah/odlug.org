@@ -11,13 +11,17 @@ sub is_alive {
    my ($self, $x, $y, $new_state) = @_;
    if (defined $new_state) {
       if ($new_state == 0) {
-         delete $self->{$x}->{$y};
+         $self->delete($x, $y);
          return 1;
       } else {
          $self->{$x}->{$y} = 1;
       }
    }
-   return $self->{$x}->{$y};
+   if ($self->{$x}) {
+      # Don't autovivify. Confuses is_empty().
+      return $self->{$x}->{$y};
+   }
+   return 0;
 }
 
 sub tick {
@@ -31,14 +35,24 @@ sub tick {
          # print "   $x $y has $neighbors neighbors\n";
          if ($neighbors < 2) {
             # Conway Rule #1
-            delete $self->{$x}->{$y};
+            $self->delete($x, $y);
          } elsif ($neighbors > 3) {
             # Conway Rule #3
-            delete $self->{$x}->{$y};
+            $self->delete($x, $y);
          }
       }
    }
    return 1;
+}
+
+sub delete {
+   my ($self, $x, $y) = @_;
+   # Autovivification gotchas for is_empty()...
+   delete $self->{$x}->{$y};
+   my $cnt = keys %{$self->{$x}};
+   if ($cnt == 0) {
+      delete $self->{$x};
+   }
 }
 
 sub neighbors {
@@ -58,12 +72,15 @@ sub neighbors {
 sub is_empty {
    my ($self) = @_;
    my $cnt = keys %$self;
-   return $cnt;
+    print "   is_empty $cnt (" . (join ",", keys %$self ) . ")\n";
+   return ($cnt == 0);
 }
 
 sub clear {
    my ($self) = @_;
-   $self = {};
+   foreach my $x (keys %$self) {
+      delete $self->{$x};
+   }
    return 1;
 }
 

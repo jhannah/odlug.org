@@ -15,14 +15,14 @@ ok(! $g->is_alive(17,3),     'alive or dead?');
 # $g->draw();
 
 # Test Conway Rule #1...
-ok($g->is_empty,             'clean slate');
+ok($g->is_empty,             'is_empty');
 $g->is_alive(5,5,1);
 ok($g->tick,                 'tick');
 ok(! $g->is_alive(5,5),      '5 5 died   RIP');
-ok($g->is_empty,             'clean slate');
+ok($g->is_empty,             'is_empty');
 
 # Test Conway Rule #2...
-ok($g->is_empty,             'clean slate');
+ok($g->is_empty,             'is_empty');
 $g->is_alive(5,5,1);
 $g->is_alive(5,6,1);
 $g->is_alive(6,5,1);
@@ -34,7 +34,7 @@ ok($g->is_alive(6,5),        'alive');
 
 # Test Conway Rule #3...
 ok($g->clear,                'clear');
-ok($g->is_empty,             'clean slate');
+ok($g->is_empty,             'is_empty');
 $g->is_alive(5,5,1);
 $g->is_alive(5,6,1);
 $g->is_alive(6,5,1);
