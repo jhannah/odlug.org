@@ -1,12 +1,7 @@
 %% Author: Jonathan
 %% Created: Nov 7, 2010
-%% Description: TODO: Add description to game_test
 -module(game_test).
 -include_lib("eunit/include/eunit.hrl").
-
-%%
-%% Include files
-%%
 
 %%
 %% Exported Functions
