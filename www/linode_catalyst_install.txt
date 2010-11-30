@@ -50,3 +50,19 @@ Add a DNS entry.
 
 All done. http://perl.odlug.org! 
 
+-------------------------------------------
+MySQL
+-------------------------------------------
+apt-get update
+apt-get install mysql-server
+apt-get install libmysqlclient-dev
+cpan DBD::Sybase
+
+-------------------------------------------
+phpMyAdmin
+-------------------------------------------
+apt-get install php5-mysql
+apt-get install libmcrypt-dev
+apt-get install php5-mcrypt
+
+
