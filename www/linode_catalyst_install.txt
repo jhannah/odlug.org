@@ -56,7 +56,7 @@ MySQL
 apt-get update
 apt-get install mysql-server
 apt-get install libmysqlclient-dev
-cpan DBD::Sybase
+cpan DBD::mysql
 
 -------------------------------------------
 phpMyAdmin
