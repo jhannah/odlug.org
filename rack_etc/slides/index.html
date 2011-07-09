@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0056)http://kapranoff.ru/talks/devconf-2010/perl_myths.html#1 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>RACK / PLACK / WSGI Enlightenment</title>
+    <link href="./slides_files/kappa.css" media="screen" rel="stylesheet" type="text/css">
+    <script src="./slides_files/jquery.js"></script>
+    <script src="./slides_files/sporx.js"></script>
+
+  </head>
+  <body>
+      <div>
+    <div id="canvasToolbar" style="top: -40px; ">
+
+      <!--div class="fr">
+        <button onclick="Sporx.addPage()">New Page</button>
+        <button onclick="Sporx.toggleEditMode()">Edit</button>
+        <button onclick="Sporx.reload()">Reload</button>
+      </div-->
+
+      <div>
+        <button onclick="sporx.firstSlide()">|&lt;&lt;</button>
+        <button onclick="sporx.prevSlide()">&lt;</button>
+        <button onclick="sporx.nextSlide()">&gt;</button>
+        <button onclick="sporx.lastSlide()">&gt;&gt;|</button>
+        <input type="text" id="current_page" size="4" onkeypress="if (this.value) sporx.showSlide(parseInt(this.value)-1);">
+        /
+        <span id="max_page">167</span>
+      </div>
+    </div>
+    </div>
+    <div id="canvas">
+       <div id="content">
+       </div>
+    </div>
+
+
+    <iframe style="display:none;" id="dataLoader"></iframe>
+    <div id="edit">
+      <textarea id="textField"></textarea>
+    </div>
+    <textarea id="builtinCode" style="width:1px;position:absolute;left:-5px;overflow:hidden;">
+PLACK / RACK
+Enlightenment
+----
+15:28 <@jhannah> nick nisi 
+and I are sitting at Panera 
+Bread trying to figure 
+out what the point of 
+PLACK/RACK is
+----
+15:29 <@jhannah> since well 
+written, framework agnostic 
+classes, in any language, 
+seem to be the same solution
+----
+15:52 <@stevan> Plack is a 
+copy of Rack
+----
+15:52 <@stevan> and PSGI is 
+a copy of WSGI (python)
+----
+15:52 <@stevan> Python has 
+an equiv to Rack I think
+----
+15:52 <@stevan> maybe not
+----
+15:53 <@stevan> see also 
+Jack and JSGI (javascript)
+----
+15:53 <@stevan> *SGI is really 
+a spec that is adaptable to 
+any language 
+----
+15:53 <@stevan> similar to CGI
+----
+15:53 <@stevan> but fucking better
+----
+Any questions?
+----
+http://en.wikipedia.org/
+wiki/Takahashi_method
+</textarea>
+  
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is the Takahashi-Method-based Presentation Tool in XUL.
+   -
+   - The Initial Developer of the Original Code is SHIMODA Hiroshi.
+   - Portions created by the Initial Developer are Copyright (C) 2005
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s): SHIMODA Hiroshi <piro@p.club.ne.jp>
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+
+</body></html>
