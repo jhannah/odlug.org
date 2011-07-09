@@ -10,8 +10,11 @@ my $app = sub {
 };
 
 builder {
-    # enable "Static", path => qr!^/static!, root => '../../';
     enable "Static", path => sub { s!^/static/!! }, root => '/var/www/odlug/';
     $app;
 }
+
+
+   # A non s/// example, which leaves the path intact:     (Plack::Middleware::Static)
+   #enable "Static", path => qr{^/(images|js|css)/}, root => './htdocs/';
 
