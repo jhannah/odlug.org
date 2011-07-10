@@ -1,22 +1,16 @@
 package POS;
 use Moose;
 
-sub total {
-   my ($self) = @_;
-   return 4;
-}
+extends 'Plack::Component'; 
 
-
-my $app = sub {
+sub call { 
    my ($env) = @_;
    return [
       200,
       ['Content-Type' => 'text/plain'],
-      [ "Hello stranger from $env->{REMOTE_ADDR}!"],
+      [ 2 + 2 ],
    ];
-};
-
-
+}
 
 1;
 
