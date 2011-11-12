@@ -1,0 +1,41 @@
+Revision history for Perl extension AI::Pathfinding::AStar.
+
+0.10  Sun Jun   17 16:00:00 2007
+	- *sighs*  A debugging remnant in the test files caused make test 
+to fail.  This appears to fix it.
+
+0.09  Sat Jun   16 19:00:00 2007
+	- I apologize.  Revision number bumped due to distribution snafu.
+
+0.08  Sat Jun   16 16:00:00 2007
+	- Major bug fixed that caused some paths to be incorrectly 
+determined due to an over-greedy implementation.  Thanks, Flavio!
+
+0.07  Tue Aug   08 07:00:00 2006
+	- Major changes introduced by Franc Carter which include:
+		- Speed optimizations by using a different Heap module and slightly restructured hash
+		- The welcome addition of a FindPathIncr() function that allows you to calculate paths in chunks
+	These are major changes about which I am very excited.  Thank you again, Franc!
+
+0.06  Mon Nov  28 19:00:00 2005
+	- no changes, CPAN refused to update the version number so I resubmitted
+
+0.05  Fri Nov  25 09:30:00 2005
+	- fixed Makefile.PL to include a dependency on Heap::Simple::Perl to fix all the CPANTester reports
+
+0.04  Mon Oct  17 17:30:00 2005
+	- finally made findpath() aware of the context in which it was called and it will now return either an array or array reference accordingly
+	- minor coding style tweaks
+	- minor documentation edits
+
+0.03  Sat Oct  15 21:00:00 2005
+	- fixed a bug in the which successive calls of findPath() would fail to find an existing path
+	- made a few minor documentation changes to be a little more clear
+
+0.02  Thu Aug  26 09:30:00 2004
+	- restructured the module to act as a base class - It is now actually useful!!
+	- reworked the documentation to be more clear
+
+0.01  Sat Sep  10 11:20:23 2003
+	- original version uploaded to CPAN
+

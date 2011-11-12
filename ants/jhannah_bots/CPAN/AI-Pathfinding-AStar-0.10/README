@@ -1,0 +1,86 @@
+NAME
+    AI::Pathfinding::AStar - Perl implementation of the A* pathfinding
+    algorithm
+
+SYNOPSIS
+      package My::Map::Package;
+      use base AI::Pathfinding::AStar;
+
+      # Methods required by AI::Pathfinding::AStar
+      sub getSurrounding { ... }
+
+      package main;
+      use My::Map::Package;
+
+      my $map = My::Map::Package->new or die "No map for you!";
+      my $path = $map->findPath($start, $target);
+      print join(', ', @$path), "\n";
+  
+      #Or you can do it incrementally, say 3 nodes at a time
+      my $state = $map->findPathIncr($start, $target, undef, 3);
+      while ($state->{path}->[-1] ne $target) {
+              print join(', ', @{$state->{path}}), "\n";
+              $state = $map->findPathIncr($start, $target, $state, 3);
+      }
+      print "Completed Path: ", join(', ', @{$state->{path}}), "\n";
+  
+DESCRIPTION
+    This module implements the A* pathfinding algorithm. It acts as a base
+    class from which a custom map object can be derived. It requires from
+    the map object a subroutine named "getSurrounding" (described below) and
+    provides to the object two routines called "findPath" and "findPathIncr"
+    (also described below.) It should also be noted that
+    AI::Pathfinding::AStar defines two other subs ("calcF" and "calcG")
+    which are used only by the "findPath" routines.
+
+    AI::Pathfinding::AStar requires that the map object define a routine
+    named "getSurrounding" which accepts the starting and target node ids
+    for which you are calculating the path. In return it should provide an
+    array reference containing the following details about each of the
+    immediately surrounding nodes:
+
+    * Node ID
+    * Cost to enter that node
+    * Heuristic
+
+    Basically you should return an array reference like this: "[ [$node1,
+    $cost1, $h1], [$node2, $cost2, $h2], [...], ...];" For more information
+    on heuristics and the best ways to calculate them, visit the links
+    listed in the *SEE ALSO* section below. For a very brief idea of how to
+    write a getSurrounding routine, refer to the included tests.
+
+    As mentioned earlier, AI::Pathfinding::AStar provides two routines named
+    "findPath" and "findPathIncr". "findPath" requires as input the starting
+    and target node identifiers. It is unimportant what format you choose
+    for your node IDs. As long as they are unique, and can be distinguished
+    by Perl's "exists $hash{$nodeid}", then they will work. "findPath" then
+    returns an array (or reference) of node identifiers representing the
+    least expensive path to your target node. An empty array means that the
+    target node is entirely unreacheable from the given source.
+    "findPathIncr" on the other hand allows you to calculate a particularly
+    long path in chunks. "findPathIncr" also takes the starting and target
+    node identifiers but also accepts a "state" variable and a maxiumum
+    number of nodes to calculate before returning. "findPathIncr" then
+    returns a hash representing the current state that can then be passed
+    back in for further processing later. The current path can be found in
+    "$state-"{path}>.
+
+PREREQUISITES
+    This module requires Heap (specifically Heap::Fibonacci and Heap::Elem)
+    to function.
+
+SEE ALSO
+    <http://www.policyalmanac.org/games/aStarTutorial.htm>,
+    <http://xenon.stanford.edu/~amitp/gameprog.html>
+
+AUTHOR
+    Aaron Dalton - aaron@daltons.ca This is my very first CPAN contribution
+    and I am not a professional programmer. Any feedback you may have, even
+    regarding issues of style, would be greatly appreciated. I hope it is of
+    some use.
+
+COPYRIGHT AND LICENSE
+    Copyright (c) 2004 Aaron Dalton. All rights reserved. This library is
+    free software; you can redistribute it and/or modify it under the same
+    terms as Perl itself.
+
