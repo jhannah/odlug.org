@@ -1,0 +1,9 @@
+This starter package zip was published on Sat Nov 12 17:09:44 UTC 2011.
+
+Last change on this starter package was:
+commit 1161353b760404814d96f46897b08270d4512ce0
+Date:   Thu Nov 10 15:12:21 2011 -0600
+
+    Fix order of col and row args in AI#order.
+
+Check https://github.com/aichallenge/aichallenge/tree/epsilon/ants/dist/starter_bots/ruby for new versions.
