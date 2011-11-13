@@ -53,7 +53,7 @@ sub my_findPath {
    say $log Dumper($path);
    my ($current, $next) = @$path;
    my $current = Position->new(split /\./, $current);
-   my $next = Position->new(split /\./, $current);
+   my $next =    Position->new(split /\./, $next);
    my $dir = $self->{ants}->direction($current, $next);
    say $log "GO $dir DAMMIT";
    return $dir;
