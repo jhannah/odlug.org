@@ -25,31 +25,38 @@ sub create_orders {
    my $self = shift;
 
    my $as = MyAStar->new($self);
-   my $run_astar = 1;
+   my $busy = {};
+   my $directions = {};
 
-   for my $ant ($self->my_ants) {
-      my @food = $self->nearby('food', $ant);
-      if (@food && $run_astar) {
-         # Head straight for food using A* algorithm
-         my $f = shift @food;
-         my $direction = $as->my_findPath($ant, $f);
+   foreach my $food ($self->food) {
+      say $log "FOOD $food";
+      my @ants = $self->nearby('my_ants', $food);
+      my $ant = shift @ants;
+      say $log "ANT $ant";
+      # Head straight for food using A* algorithm
+      my $direction = $as->my_findPath($ant, $food);
+      $self->issue_order( $ant, $direction );
+      $directions->{$direction}++;
+      $busy->{$ant} = 1;
+      printf $log "%s seconds have elapsed\n", 
+         tv_interval($self->{go_time}, [ gettimeofday ]);
+   }
+
+   foreach my $ant ($self->my_ants) {
+      next if ($busy->{$ant});
+      my @ants = $self->nearby('my_ants', $ant);
+      shift @ants;  # throw myself away
+      my $closest = shift @ants;
+      next unless ($closest);
+      say $log "Avoid other ants!";
+      say $log "I'm at: " .  Dumper($ant);
+      say $log "Closest: " . Dumper($closest);
+      my $direction = $self->direction($closest, $ant);
+      say $log "GO $direction dammit!";
+      if ($self->passable(Position->from($ant)->move($direction))) {
          $self->issue_order( $ant, $direction );
-         # $run_astar = 0;
       } else {
-         # Uhh... head away from the closest other ant?
-         my @ants = $self->nearby('my_ants', $ant);
-         shift @ants;  # throw myself away
-         my $closest = shift @ants;
-         say $log "Avoid other ants!";
-         say $log "I'm at: " .  Dumper($ant);
-         say $log "Closest: " . Dumper($closest);
-         my $direction = $self->direction($closest, $ant);
-         say $log "GO $direction dammit!";
-         if ($self->passable(Position->from($ant)->move($direction))) {
-            $self->issue_order( $ant, $direction );
-         } else {
-            say $log "   NO! not passable!";
-         }
+         say $log "   NO! not passable!";
       }
       printf $log "%s seconds have elapsed\n", 
          tv_interval($self->{go_time}, [ gettimeofday ]);
