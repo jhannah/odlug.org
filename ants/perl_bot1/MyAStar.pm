@@ -1,24 +1,64 @@
 package MyAStar;
-use base AI::Pathfinding::AStar;
+use strict;
+use 5.10.0;
+use base 'AI::Pathfinding::AStar';
+use Data::Dumper;
+use FileHandle;
 
-sub new
-{
-    my $invocant = shift;
-    my $class = ref($invocant) || $invocant;
-    my $self = bless {}, $class;
+open my $log, '>>', 'log.txt' or die;
+$log->autoflush;
 
-	$self->{map} = {};
-	for(my $x=1; $x<=7; $x++)
-	{
-		for(my $y=1; $y<=5; $y++)
-			{$self->{map}->{$x.'.'.$y} = 1;}
-	}
-	$self->{map}->{'4.2'} = 0;
-	$self->{map}->{'4.3'} = 0;
-	$self->{map}->{'4.4'} = 0;
+sub new {
+   my ($invocant, $ants) = @_;
+  
+   my $class = ref($invocant) || $invocant;
+   my $self = bless {
+      ants => $ants
+   }, $class;
 
-    return $self;
+   $self->{map} = {};
+
+   # Convert from Ants lingo to AI::Pathfinding::AStar lingo.
+   foreach my $x (0 .. $ants->width) {
+      foreach my $y (0 .. $ants->height) {
+         $self->{map}->{"$x.$y"} = 1;
+      }
+   }
+   # Water can not be traversed.
+   foreach my $loc ($ants->water) {
+      $self->{map}->{$loc->x . '.' . $loc->y} = 0;
+   }
+   # Don't step on my own ants.
+   foreach my $loc ($ants->my_ants) {
+      $self->{map}->{$loc->x . '.' . $loc->y} = 0;
+   }
+
+   return $self;
 }
+
+
+=head2 my_findPath 
+
+Covert from Ants lingo to AI::Pathfinding::AStar lingo.
+
+=cut
+
+sub my_findPath {
+   my ($self, $from, $to) = @_;
+   print $log "Pathing FROM " . Dumper($from) . " TO " . Dumper($to);
+   my $path = $self->findPath(
+      $from->x . '.' . $from->y,
+      $to->x   . '.' . $to->y,
+   );
+   say $log Dumper($path);
+   my ($current, $next) = @$path;
+   my $current = Position->new(split /\./, $current);
+   my $next = Position->new(split /\./, $current);
+   my $dir = $self->{ants}->direction($current, $next);
+   say $log "GO $dir DAMMIT";
+   return $dir;
+}
+
 
 #get orthoganal neighbours
 sub getOrth

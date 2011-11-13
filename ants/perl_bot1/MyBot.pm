@@ -27,12 +27,8 @@ sub create_orders {
         my @food = $self->nearby_food($ant);
 
         for my $f (@food) {
-            my $direction = $self->direction($ant, $f);
-            if (! $self->passable(Position->from($ant)->move($direction))) {
-               my $as = MyAStar->new();
-               my $path1 = $as->findPath('1.3', '7.3');
-               print $log Dumper($path1);
-            }
+            my $as = MyAStar->new($self);
+            my $direction = $as->my_findPath($ant, $f);
             $self->issue_order( $ant, $direction );
             last;
         }
@@ -40,8 +36,7 @@ sub create_orders {
     }
 }
 
-# This demonstrates the use of some of the methods available in the Ants
-# library.
+# This demonstrates the use of some of the methods available in the Ants library.
 # This subroutine returns a list of nearby food for a given location, sorted
 # by distance.
 sub nearby_food {
@@ -49,7 +44,7 @@ sub nearby_food {
 
     my @foods;
     for my $food ($self->food) {
-        my $dist = $self->distance( $ant_location, $food);
+        my $dist = $self->distance($ant_location, $food);
         push @foods, { distance => $dist, tile => $food };
     }
 
