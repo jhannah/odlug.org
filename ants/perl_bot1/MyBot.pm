@@ -6,6 +6,7 @@ use Position;
 use MyAStar;
 use Data::Dumper;
 use FileHandle;
+use Time::HiRes qw(gettimeofday tv_interval);
 
 open my $log, '>>', 'log.txt' or die;
 $log->autoflush;
@@ -23,15 +24,17 @@ sub setup {
 sub create_orders {
    my $self = shift;
 
+   my $as = MyAStar->new($self);
+   my $run_astar = 1;
+
    for my $ant ($self->my_ants) {
       my @food = $self->nearby('food', $ant);
-
-      if (@food) {
+      if (@food && $run_astar) {
          # Head straight for food using A* algorithm
          my $f = shift @food;
-         my $as = MyAStar->new($self);
          my $direction = $as->my_findPath($ant, $f);
          $self->issue_order( $ant, $direction );
+         # $run_astar = 0;
       } else {
          # Uhh... head away from the closest other ant?
          my @ants = $self->nearby('my_ants', $ant);
@@ -48,6 +51,8 @@ sub create_orders {
             say $log "   NO! not passable!";
          }
       }
+      printf $log "%s seconds have elapsed\n", 
+         tv_interval($self->{go_time}, [ gettimeofday ]);
    }
 }
 

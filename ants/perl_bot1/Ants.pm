@@ -6,6 +6,7 @@ use feature ':5.10';
 use List::Util qw(first max min reduce shuffle sum);
 use Position;
 use FileHandle;
+use Time::HiRes qw(gettimeofday tv_interval);
 
 open my $log, '>>', 'log.txt' or die;
 $log->autoflush();
@@ -29,20 +30,24 @@ Must be called prior to any other methods, though.
 =cut
 
 sub new {
-    my ($class, $args) = @_;
+   my ($class, $args) = @_;
 
-    # Ensure we're autoflushing output:
-    $| = 1;
+   # Ensure we're autoflushing output:
+   $| = 1;
 
-    my $self = {
-        food => undef,
-        water => undef,
-        corpses => undef,
-        ants => undef,
-        config => undef,
-    };
+   my $self = {
+      food    => undef,
+      water   => undef,
+      corpses => undef,
+      ants    => undef,
+      config  => undef,
+      planned => {
+         paths => { },
+      },
+      go_time => undef,
+   };
 
-    bless $self, $class;
+   bless $self, $class;
 }
 
 =head2 height
@@ -89,6 +94,7 @@ sub run {
                 exit;
             }
             when ('go') {
+                $self->{go_time} = [gettimeofday];
                 $self->create_orders;
             }
         }
