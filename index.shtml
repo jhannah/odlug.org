@@ -109,14 +109,9 @@ Language / platform showcase:
 
 <!--   ---------------->
 <h1>Members</h1>
-<div class="text"><p>
-Add yourself if you show up to at least one meeting a year... or whatever.  :)
-</p>
-
-<p>
-<!--#include virtual="www/perl/members.html" -->
-</p>
-
+<div class="text">
+   <p>Add yourself if you show up to at least one meeting a year... or whatever.  :)</p>
+   <p><!--#include virtual="www/perl/members.html" --></p>
 </div>
 <!--   ---------------->
 
