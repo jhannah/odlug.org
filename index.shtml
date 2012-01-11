@@ -111,6 +111,7 @@ Language / platform showcase:
 <h1>Members</h1>
 <div class="text">
    <p>Add yourself if you show up to at least one meeting a year... or whatever.  :)</p>
+   <!-- Using Apache Includes as a lowest-common-denominator measure so we don't lock the main site into any given web tech.  (...other than Apache  :) -->
    <p><!--#include virtual="www/perl/members.html" --></p>
 </div>
 <!--   ---------------->
