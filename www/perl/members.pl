@@ -4,14 +4,14 @@ use 5.10.0;
 my @m = (
    # alphabetical by last name
    # name,             URL,                              twitter,      github
+   'Stephen Haberman', 'http://draconianoverlord.com',    undef,       'stephenh',
    'Jay Hannah',       'http://jays.net',                'deafferret', 'jhannah',
    'Nick Nisi',        'http://slouchcou.ch',            'nicknisi',   'nicknisi',
    'Ryan Stille',      'http://www.stillnetstudios.com', 'RyanStille', 'stillnet',
+   'Samuel Tesla',     'http://blog.alieniloquent.com',   undef,       'stesla',
    'Juan Vazquez',     'http://javazquez.com',           'javazquez',  'javazquez',
    'Nick Wertzberger', undef,                             undef,       'nwerzberger',
 
-   undef, undef, undef,                                                'stesla',
-   undef, undef, undef,                                                'stephenh',
    undef, undef, undef,                                                'davekerber',
    undef, undef, undef,                                                'kwbeam',
    undef, undef, undef,                                                'jshickey',
