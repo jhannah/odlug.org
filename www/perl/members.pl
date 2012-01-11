@@ -30,6 +30,7 @@ my @m = (
 );
 while (@m) {
    my ($name, $url, $twitter, $github) = splice @m, 0, 4;
+   print "<nobr>";
    if ($name) {
       say "<a href='$url'>$name</a> ";
    } elsif ($github) {
@@ -41,6 +42,7 @@ while (@m) {
    if ($github) {
       say "   <a href='http://github.com/$github'><img src='www/images/github-icon-16x16.jpg'></a>";
    }
+   say "</nobr>";
 }
 
 
