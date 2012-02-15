@@ -6,6 +6,8 @@
         <meta name="keywords" content="Omaha Nebraska Development Ruby Python Perl Smalltalk Lisp Javascript Io Self" />
         <meta name="description" content="We're a bunch of dynamic language enthusiasts that love to get things done! Wonder why everyone is waxing poetic about Ruby, Python, Perl, Smalltalk, Lisp, Javascript, Io, Self, etc.? Join us and find out! Welcoming new members of all skill levels." />
         <link href="www/metamorph_happyness/styles.css" rel="stylesheet" type="text/css" media="screen" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="jquery.tweet.js"></script>
     </head>
     <body>
         <div id="mainbg">
@@ -103,6 +105,8 @@ Language / platform showcase:
 </ul>
 </p>
 
+
+
                         </div>
 
 
@@ -113,6 +117,11 @@ Language / platform showcase:
    <p>Add yourself if you show up to at least one meeting a year... or whatever.  :)</p>
    <!-- Using Apache Includes as a lowest-common-denominator measure so we don't lock the main site into any given web tech.  (...other than Apache  :) -->
    <p><!--#include virtual="www/perl/members.html" --></p>
+
+
+<div id="twitter">
+</div>
+
 </div>
 <!--   ---------------->
 
@@ -138,6 +147,9 @@ join our <a href="http://groups.google.com/group/odynug">mailing list</a> and/or
 <a href="http://webchat.freenode.net/?channels=omaha.dev">in IRC</a>.
 <p>
 
+
+
+
    
                         </div>
 						
@@ -155,6 +167,17 @@ join our <a href="http://groups.google.com/group/odynug">mailing list</a> and/or
 
         </div>
 
+<script>
+$(document).ready(function(){
+        $("#twitter").tweet({
+          avatar_size: 32,
+          count: 4,
+          username: ["deafferret", "nicknisi", "RyanStille", "javazquez", "colorful_n0mi"],
+          loading_text: "searching twitter...",
+          refresh_interval: 60
+        });
+});
+</script>
 
 
    </body>
