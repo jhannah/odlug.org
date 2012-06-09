@@ -40,8 +40,8 @@
                             
                             <div class="news1top"></div>
                             <div class="news1">
-                                <div class="numleft"><p>5</p></div>
-                                <div class="newsright"><a href="#">Tuesday, June 5, 2012</a>
+                                <div class="numleft"><p>10</p></div>
+                                <div class="newsright"><a href="#">Tuesday, July 10, 2012</a>
                                     <p>Monthly meeting</p>
                                 </div>
                                 <div style="clear: both"></div>
@@ -50,8 +50,8 @@
                             
                             <div class="news2top"></div>
                             <div class="news2">
-                                <div class="numleft"><p>10</p></div>
-                                <div class="newsright"><a href="#">Tuesday, July 10, 2012</a>
+                                <div class="numleft"><p>14</p></div>
+                                <div class="newsright"><a href="#">Tuesday, August 14, 2012</a>
                                     <p>Monthly meeting</p>
                                 </div>
                                 <div style="clear: both"></div>
@@ -77,19 +77,9 @@ Check out <a href="http://jays.net/wiki/ODLUG">our wiki</a>.
 <table>
 <tr><td valign="top" width="50%">
 
-<p><b>Kevin Beam:</b><br/>
- &nbsp; &nbsp; &nbsp; Ruby (and Rails) and JavaScript, Stripe for payment processing, RESTful APIs in Rails, BDD/TDD in Rails, etc.; backbone.js and perhaps jquery mobile as well.
-</p>
-
-<p><b>Lucas Hartman</b><br/>
- &nbsp; &nbsp; &nbsp; Intro to the <a href="http://unity3d.com">Unity</a> game engine.
-</p>
-
-<!--
 <p><b>Jay Hannah:</b><br/>
  &nbsp; &nbsp; &nbsp; I'm happy to present anything <a href="https://metacpan.org/">Perl</a> anytime. Drop me a line. :)
 </p>
--->
 
 <p><b><i>You</i></b> presenting<br/>
  &nbsp; &nbsp; &nbsp; whatever you're excited about!  :)
@@ -97,15 +87,15 @@ Check out <a href="http://jays.net/wiki/ODLUG">our wiki</a>.
 
 </td><td valign="top">
 
-   <b>Tuesday June 5 2012, 7pm</b><br/>
-   (USUALLY the 2nd Tuesday of every month.)<br/>
-   <a href="http://covisco.com">CoVis CoWorking</a><br/>
-   920 South 107th Avenue, Suite 106<br/>
-   Omaha, NE<br/>
-<!-- 
+   <b>Tuesday July 10 2012, 7pm</b><br/>
+   (2nd Tuesday of every month.)<br/>
    UNO's Peter Kiewit Institute (PKI) Room 375<br/>
    <a href="http://maps.google.com/maps/ms?ie=UTF8&hl=en&msa=0&msid=108651824816859641005.00045895756eb814d74a9&ll=41.247326,-96.016034&spn=0.004082,0.006866&t=h&z=17">1110 South 67th Street</a>
    Omaha, NE  USA<br/>
+<!--
+   <a href="http://covisco.com">CoVis CoWorking</a><br/>
+   920 South 107th Avenue, Suite 106<br/>
+   Omaha, NE<br/>
 -->
    Lost? Jay's mobile phone: 402-598-7782
 
