@@ -40,8 +40,8 @@
                             
                             <div class="news1top"></div>
                             <div class="news1">
-                                <div class="numleft"><p>14</p></div>
-                                <div class="newsright"><a href="#">Tuesday, August 14, 2012</a>
+                                <div class="numleft"><p>11</p></div>
+                                <div class="newsright"><a href="#">Tuesday, Sep. 11 2012</a>
                                     <p>Monthly meeting</p>
                                 </div>
                                 <div style="clear: both"></div>
@@ -50,8 +50,8 @@
                             
                             <div class="news2top"></div>
                             <div class="news2">
-                                <div class="numleft"><p>11</p></div>
-                                <div class="newsright"><a href="#">Tuesday, Sep. 11, 2012</a>
+                                <div class="numleft"><p>9</p></div>
+                                <div class="newsright"><a href="#">Tuesday, Oct. 9, 2012</a>
                                     <p>Monthly meeting</p>
                                 </div>
                                 <div style="clear: both"></div>
@@ -76,12 +76,22 @@ Check out <a href="http://jays.net/wiki/ODLUG">our wiki</a>.
 
 <table>
 <tr><td valign="top" width="50%">
+<p><b>Juan Vazquez</b><br/>
+   &nbsp; &nbsp; &nbsp; Handle email <b>LIKE A BOSS</b></br>
+   &nbsp; &nbsp; &nbsp; Clojure IMAP(gmail) - compojure, enlive, macro(s) for DSL, leiningen, javamail
+</p>
 
+<p><b>Sam Flint</b><br/>
+   &nbsp; &nbsp; &nbsp; Tk/Perl, Arduino helicopter programming
+</p>
+
+<!--
 <p><b>Jay Hannah:</b><br/>
    &nbsp; &nbsp; &nbsp; Various juicy bits of Modern Perl.<br/>
    &nbsp; &nbsp; &nbsp; Borrowed with permission from<br/>
    &nbsp; &nbsp; &nbsp; <a href="http://act.yapcna.org/2012/talk/70">Jacinta Richardson</a> YAPC::NA 2012
 </p>
+-->
 
 <p><b><i>You</i></b> presenting<br/>
  &nbsp; &nbsp; &nbsp; whatever you're excited about!  :)
@@ -89,16 +99,16 @@ Check out <a href="http://jays.net/wiki/ODLUG">our wiki</a>.
 
 </td><td valign="top">
 
-   <b>Tuesday August 14 2012, 7pm</b><br/>
+   <b>Tuesday September 11 2012, 7pm</b><br/>
    (2nd Tuesday of every month.)<br/>
-<!--
    UNO's Peter Kiewit Institute (PKI) Room 375<br/>
    <a href="http://maps.google.com/maps/ms?ie=UTF8&hl=en&msa=0&msid=108651824816859641005.00045895756eb814d74a9&ll=41.247326,-96.016034&spn=0.004082,0.006866&t=h&z=17">1110 South 67th Street</a>
    Omaha, NE  USA<br/>
--->
+<!--
    <a href="http://covisco.com">CoVis CoWorking</a><br/>
    920 South 107th Avenue, Suite 106<br/>
    Omaha, NE<br/>
+-->
    Lost? Jay's mobile phone: 402-598-7782
 
 </td></tr>
