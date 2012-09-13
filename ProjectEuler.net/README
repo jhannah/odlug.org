@@ -1,14 +1,16 @@
 Project Euler - Lots of mathy/programming puzzles!  :)
 
-Each directory is for ODLUG solutions to a problem #. 
+Filenames correspond to the problem #.
 
-   1/   http://projecteuler.net/problem=1 
-        "Add all the natural numbers below one thousand that are multiples 
-        of 3 or 5."
+   001.pl   http://projecteuler.net/problem=1 
+            "Add all the natural numbers below one thousand that are multiples 
+            of 3 or 5."
+            Solved in Perl
 
-   2/   http://projecteuler.net/problem=2
-        "By considering the terms in the Fibonacci sequence whose values do 
-        not exceed four million, find the sum of the even-valued terms."
+   002.go   http://projecteuler.net/problem=2
+            "By considering the terms in the Fibonacci sequence whose values do 
+            not exceed four million, find the sum of the even-valued terms."
+            Solved in Go
 
    etc...
 
