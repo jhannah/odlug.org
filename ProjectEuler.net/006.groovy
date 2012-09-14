@@ -1,6 +1,6 @@
-//Juan Vazquez 
-//https://github.com/javazquez
-//http://javazquez.com
+// Juan Vazquez 
+// https://github.com/javazquez
+// http://javazquez.com
 
 def getAnswer = {n->
   (n*n-1) * (3*n+2) * n/12

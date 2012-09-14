@@ -1,6 +1,6 @@
-//Juan Vazquez 
-//https://github.com/javazquez
-//http://javazquez.com
+// Juan Vazquez 
+// https://github.com/javazquez
+// http://javazquez.com
 
 def aSide = {m,n-> 2*(m * n) }
 def bSide = {m,n-> m**2-n**2 }

@@ -1,5 +1,5 @@
-;;;Juan Vazquez 
-;;;https://github.com/javazquez
+;;; Juan Vazquez 
+;;; https://github.com/javazquez
 
 (defn isPalindrom?[value](= (str value ) (apply str (reverse  (str value)))))
 

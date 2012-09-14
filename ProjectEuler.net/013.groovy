@@ -1,6 +1,6 @@
-//Juan Vazquez 
-//https://github.com/javazquez
-//http://javazquez.com
+// Juan Vazquez 
+// https://github.com/javazquez
+// http://javazquez.com
 
 BigInteger bi=0
 [37107287533902102798797998220837590246510135740250,

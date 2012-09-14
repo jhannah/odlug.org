@@ -1,6 +1,6 @@
-//Juan Vazquez 
-//https://github.com/javazquez
-//http://javazquez.com
+// Juan Vazquez 
+// https://github.com/javazquez
+// http://javazquez.com
 
 def startTime = System.nanoTime();
 def even={long n ->n/2l}
