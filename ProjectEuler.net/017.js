@@ -1,3 +1,7 @@
+//Juan Vazquez 
+//https://github.com/javazquez
+//http://javazquez.com
+
 //ones are used 100 for each hundered ex->one hundred...one hundred and ninety-nine
 //ones are used 90 for 1-99 ..so they are used 190 times
 //one thousand is 11 chars

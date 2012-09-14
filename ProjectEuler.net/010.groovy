@@ -1,3 +1,7 @@
+//Juan Vazquez 
+//https://github.com/javazquez
+//http://javazquez.com
+
 def primelist = [] as TreeSet
 long total = 2
 long upperbound = 2000000

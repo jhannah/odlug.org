@@ -1,3 +1,7 @@
+//Juan Vazquez 
+//https://github.com/javazquez
+//http://javazquez.com
+
 def startTime = System.nanoTime();
 def even={long n ->n/2l}
 def odd={long n -> 3l*n + 1l}

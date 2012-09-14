@@ -1,3 +1,7 @@
+//Juan Vazquez 
+//https://github.com/javazquez
+//http://javazquez.com
+
 //works in groovy console
 boolean divisible (inNumb,rangevals,clos){
   def test = false

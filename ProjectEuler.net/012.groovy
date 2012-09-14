@@ -1,3 +1,6 @@
+//Juan Vazquez 
+//https://github.com/javazquez
+//http://javazquez.com
 
 def startTime = System.nanoTime();
 TreeSet<Long> primelist=[]
