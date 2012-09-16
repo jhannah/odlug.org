@@ -10,4 +10,4 @@
 (defn factors [num](filter #(zero? (rem num %)) (range 2 (Math/sqrt num) )))
 
 (reduce max (filter #(prime? %) (factors 600851475143)))
-
+;user=>6857
