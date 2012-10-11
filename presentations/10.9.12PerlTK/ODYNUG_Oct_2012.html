@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Sam Flint" />
+  <meta name="date" content="2012-10-09" />
+  <title>Perl/Tk ODynUG</title>
+  <!-- configuration parameters -->
+  <meta name="defaultView" content="slideshow" />
+  <meta name="controlVis" content="hidden" />
+  <!-- style sheet links -->
+  <link rel="stylesheet" href="s5/default/slides.css" type="text/css" media="projection" id="slideProj" />
+  <link rel="stylesheet" href="s5/default/outline.css" type="text/css" media="screen" id="outlineStyle" />
+  <link rel="stylesheet" href="s5/default/print.css" type="text/css" media="print" id="slidePrint" />
+  <link rel="stylesheet" href="s5/default/opera.css" type="text/css" media="projection" id="operaFix" />
+  <!-- S5 JS -->
+  <script src="s5/default/slides.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="layout">
+<div id="controls"></div>
+<div id="currentSlide"></div>
+<div id="header"></div>
+<div id="footer">
+  <h1>2012-10-09</h1>
+  <h2>Perl/Tk ODynUG</h2>
+</div>
+</div>
+<div class="presentation">
+<div class="titleslide slide">
+  <h1>Perl/Tk ODynUG</h1>
+  <h2>Sam Flint</h2>
+  <h3>2012-10-09</h3>
+</div>
+<div class="section slide level1" id="what-ill-cover">
+<h1>What I'll Cover</h1>
+<ul>
+<li>What Is Perl/Tk?</li>
+<li>Why Use Perl/Tk?</li>
+<li>How do I use Perl/Tk?</li>
+</ul>
+</div>
+<div class="section slide level1" id="what-is-perltk">
+<h1>What Is Perl/Tk?</h1>
+<p>Perl/Tk is the combination of the Perl Language, and the Tk widget set originally developed for TCL. There are several alternatives to Tk, but they tend to be buggy, annoying, and difficult. Alternatives include GTK, GTK+, Qt, Tkx (Tk's uses-native-widget cousin),a raw X11 Interface, and WinForms if you are stuck on M$ Windoze.</p>
+</div>
+<div class="section slide level1" id="why-should-i-use-perltk">
+<h1>Why should I use Perl/Tk?</h1>
+<p>Three Reasons:</p>
+<ul>
+<li>Simplicity
+<ul>
+<li>If you can work with OO Perl, you can do just fine with it, it is just OO Perl. You don't have to worry about writing stuff to detect a click, or even a keystroke it a text box, most of it is handled for you, just write a plain-perl callback.</li>
+</ul></li>
+<li>Power
+<ul>
+<li>Because it's simple, it's powerful. You can write something that would take many lines of Perl/GTK code in a few with Tk.</li>
+</ul></li>
+<li>Extensibility
+<ul>
+<li>You can, in general, just inherit a couple of classes, and write a few extra callbacks, and package it up pretty easily, it's a simple process.</li>
+</ul></li>
+</ul>
+</div>
+<div class="section slide level1" id="how-do-i-use-perltk">
+<h1>How do I use Perl/Tk?</h1>
+<p>Now comes the time for EMACS and some open code/Demos.</p>
+<ul>
+<li>~/projects/museumlinc/client.pl</li>
+<li>~/projects/poweroffice/search/client.pl</li>
+<li>~/projects/curatedKnowledge/ckb.pl</li>
+</ul>
+</div>
+<div class="section slide level1" id="caveat-emptor">
+<h1>Caveat Emptor!</h1>
+<p>Just a few cautions:</p>
+<ul>
+<li>Use CPAN to install <code>perl -MCPAN -e &quot;install Tk&quot;</code>, do not use the development version.</li>
+<li><strong>DO NOT</strong> use ActiveState Perl, it is a pain to manage, and install anything on, please use Strawberry!</li>
+<li>Make sure to use <code>Tk</code> rather than <code>Tkx</code>.
+<ul>
+<li>It uses the <strong>&quot;best&quot;</strong> looking widget set, which itself can be a bit buggy.</li>
+<li>Most people on PerlMonks know Tk better, very few know Tkx.</li>
+</ul></li>
+</ul>
+</div>
+<div class="section slide level1" id="questions">
+<h1>Questions</h1>
+<p><br />Ask away!</p>
+</div>
+</div>
+</body>
+</html>
