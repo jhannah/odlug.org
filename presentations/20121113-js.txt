@@ -1,0 +1,10 @@
+Nick Nisi's  2012-11-13 presentation:
+http://nodejs.org/
+http://twitter.github.com/bower/
+https://github.com/C2FO/comb
+https://github.com/C2FO
+http://c2fo.com/
+http://c2fo.github.com/comb/comb_Promise.html
+https://github.com/visionmedia/express
+http://expressjs.com/
+
