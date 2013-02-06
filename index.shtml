@@ -207,7 +207,7 @@ $(document).ready(function(){
         $("#twitter").tweet({
           avatar_size: 32,
           count: 4,
-          username: ["deafferret", "nicknisi", "RyanStille", "javazquez", "colorful_n0mi"],
+          username: ["deafferret", "nicknisi", "RyanStille", "javazquez", "colorful_n0mi", "shawnhermans"],
           loading_text: "searching twitter...",
           refresh_interval: 60
         });

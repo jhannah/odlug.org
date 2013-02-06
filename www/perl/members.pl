@@ -11,6 +11,7 @@ my @m = (
    'Samuel Tesla',     'http://blog.alieniloquent.com',   undef,       'stesla',
    'Juan Vazquez',     'http://javazquez.com',           'javazquez',  'javazquez',
    'Nick Wertzberger', undef,                             undef,       'nwerzberger',
+   'Shawn Hermans',    'http://blog.shawnhermans.com',   'shawnhermans',undef,
 
    undef, undef, undef,                                                'davekerber',
    undef, undef, undef,                                                'kwbeam',
