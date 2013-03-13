@@ -39,8 +39,8 @@
                             
                             <div class="news1top"></div>
                             <div class="news1">
-                                <div class="numleft"><p>12</p></div>
-                                <div class="newsright"><a href="#">Tuesday, Mar. 12 2013</a>
+                                <div class="numleft"><p>9</p></div>
+                                <div class="newsright"><a href="#">Tuesday, Apr. 9 2013</a>
                                     <p>Monthly meeting</p>
                                 </div>
                                 <div style="clear: both"></div>
@@ -49,8 +49,8 @@
                             
                             <div class="news2top"></div>
                             <div class="news2">
-                                <div class="numleft"><p>9</p></div>
-                                <div class="newsright"><a href="#">Tuesday, Apr. 9, 2013</a>
+                                <div class="numleft"><p>14</p></div>
+                                <div class="newsright"><a href="#">Tuesday, May. 14, 2013</a>
                                     <p>Monthly meeting</p>
                                 </div>
                                 <div style="clear: both"></div>
@@ -75,12 +75,12 @@ Check out <a href="http://jays.net/wiki/ODLUG">our wiki</a>.
 
 <table>
 <tr><td valign="top" width="50%">
-<p><b>Juan Vazquez</b><br/>
-   &nbsp; &nbsp; &nbsp; Groovy: Meta object programming, Extension Modules, Gradle, GVM
-</p>
-
 <p><b>Shawn Hermans</b><br/>
    &nbsp; &nbsp; &nbsp; <a href="http://blog.shawnhermans.com/2013/01/pigs-in-space.html">Pig and Python</a> to process large data.
+</p>
+
+<p><b>Nick Nisi</b><br/>
+   &nbsp; &nbsp; &nbsp; git Workshop, re-deux!
 </p>
 
 <!-- 
@@ -97,7 +97,7 @@ Check out <a href="http://jays.net/wiki/ODLUG">our wiki</a>.
 
 </td><td valign="top">
 
-   <b>Tuesday March 12 2013, 7pm</b><br/>
+   <b>Tuesday April 9 2013, 7pm</b><br/>
    (2nd Tuesday of every month.)<br/>
 <!--
    UNO's Peter Kiewit Institute (PKI) Room 160<br/>
