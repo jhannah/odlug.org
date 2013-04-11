@@ -25,7 +25,10 @@ EOT
 foreach my $key (@jsonkeys) {
    say $out "   <th>$key</th>";
 }
-say $out "</tr>";
+say $out <<EOT;
+   <th> </th>
+</tr>
+EOT
 
 foreach my $daysago (0..7) {         # For the last week
    my $time = time - 86400 * $daysago;
@@ -44,6 +47,8 @@ foreach my $daysago (0..7) {         # For the last week
    print $out join "</td><td>", 
       $date,
       @$json{ @jsonkeys };
+   my $weburl = "http://forecast.io/#/f/$latlong/$time";
+   print $out "<td><a href='$weburl' target='_blank'>web</a>";
    say $out "</td></tr>";
 }
 
