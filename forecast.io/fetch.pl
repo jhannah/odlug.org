@@ -10,11 +10,22 @@ local $Class::Date::DATE_FORMAT="%Y-%m-%d";
 
 my $mech = WWW::Mechanize->new();
 
+my @jsonkeys = qw(
+   summary precipIntensity precipIntensityMax precipIntensityMaxTime precipType 
+   temperatureMin temperatureMax
+);
+
 open my $out, ">:utf8", "thurman_ia.html";
 print $out <<EOT;
 <h1>Thurman, IA History</h1>
 <table>
+<tr>
+   <th>Date</th>
 EOT
+foreach my $key (@jsonkeys) {
+   say $out "   <th>$key</th>";
+}
+say $out "</tr>";
 
 foreach my $daysago (0..7) {         # For the last week
    my $time = time - 86400 * $daysago;
@@ -32,7 +43,7 @@ foreach my $daysago (0..7) {         # For the last week
    print $out "<tr><td>";
    print $out join "</td><td>", 
       $date,
-      $json->{summary};
+      @$json{ @jsonkeys };
    say $out "</td></tr>";
 }
 
@@ -40,8 +51,9 @@ say $out <<EOT;
 
 </table>
 
-Data from <a href="https://developer.forecast.io/">forecast.io API</a>.
-<a href="https://github.com/jhannah/odlug.org">soure code</a>.
+<br/><br/><br/><br/>
+Data from <a href="https://developer.forecast.io/">forecast.io API</a><br/>
+<a href="https://github.com/jhannah/odlug.org/tree/master/forecast.io">soure code</a>
 EOT
 
 
