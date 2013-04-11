@@ -11,13 +11,20 @@ local $Class::Date::DATE_FORMAT="%Y-%m-%d";
 my $mech = WWW::Mechanize->new();
 
 my @jsonkeys = qw(
-   summary precipIntensity precipIntensityMax precipIntensityMaxTime precipType 
+   summary precipIntensity precipIntensityMax precipAccumulation precipType 
    temperatureMin temperatureMax
 );
 
 open my $out, ">:utf8", "thurman_ia.html";
 print $out <<EOT;
 <h1>Thurman, IA History</h1>
+
+<p>
+<b>precipIntensity</b>: inches of liquid water per hour<br/>
+<b>precipAccumulation</b>: inches snow accum<br/>
+<a href="https://developer.forecast.io/docs/v2">Read more</a>
+</p>
+
 <table>
 <tr>
    <th>Date</th>
