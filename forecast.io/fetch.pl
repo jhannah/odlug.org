@@ -17,6 +17,9 @@ my @jsonkeys = qw(
 open my $out, ">:utf8", "out.html";
 print $out <<EOT;
 <p>
+Ya, you could use this tool. Or you could just click <a href="http://www.weather.com/weather/monthly/USIA0847">weather.com</a> :)
+</p>
+<p>
 <b>precipIntensity</b>: inches of liquid water per hour<br/>
 <b>precipAccumulation</b>: inches snow accum<br/>
 <a href="https://developer.forecast.io/docs/v2">Read more</a>
