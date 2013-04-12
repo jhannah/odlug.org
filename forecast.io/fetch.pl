@@ -5,7 +5,6 @@ use JSON::XS;
 use Class::Date qw(date);
 
 my $api_key = '4f3610e2e1b7172e3541d3f255d7bc4c';  # jay@jays.net
-my $latlong = '40.8198,-95.7521';   # Thurman, IA (where Jay dirt bikes)
 local $Class::Date::DATE_FORMAT="%Y-%m-%d";
 
 my $mech = WWW::Mechanize->new();
