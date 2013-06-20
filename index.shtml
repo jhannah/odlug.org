@@ -39,8 +39,8 @@
                             
                             <div class="news1top"></div>
                             <div class="news1">
-                                <div class="numleft"><p>11</p></div>
-                                <div class="newsright"><a href="#">Tuesday, Jun 11 2013</a>
+                                <div class="numleft"><p>9</p></div>
+                                <div class="newsright"><a href="#">Tuesday, Jul 9 2013</a>
                                     <p>Monthly meeting</p>
                                 </div>
                                 <div style="clear: both"></div>
@@ -49,8 +49,8 @@
                             
                             <div class="news2top"></div>
                             <div class="news2">
-                                <div class="numleft"><p>9</p></div>
-                                <div class="newsright"><a href="#">Tuesday, Jul 9 2013</a>
+                                <div class="numleft"><p>13</p></div>
+                                <div class="newsright"><a href="#">Tuesday, Aug 13 2013</a>
                                     <p>Monthly meeting</p>
                                 </div>
                                 <div style="clear: both"></div>
@@ -75,19 +75,13 @@ Check out <a href="http://jays.net/wiki/ODLUG">our wiki</a>.
 
 <table>
 <tr><td valign="top" width="50%">
-<p><b>Jay Hannah:</b><br/>
-   &nbsp; &nbsp; &nbsp; John's talk 
-   <a href="http://www.yapcna.org/yn2013/talk/4742">Automate Yo'self</a> included 
-   <a href="https://github.com/cxreg/smartcd">smartcd</a>; and other 
-   juicy bits of YAPC::NA 2013
+
+<p><b>Nick Wertzburger</b><br/>
+   &nbsp; &nbsp; &nbsp; three.js, a 3D Javascript engine!
 </p>
 
 <p><b>Nick Nisi</b><br/>
    &nbsp; &nbsp; &nbsp; git Workshop, re-deux!
-</p>
-
-<p><b>Nick Wertzburger</b><br/>
-   &nbsp; &nbsp; &nbsp; three.js, a 3D Javascript engine!
 </p>
 
 <p><b><i>You</i></b> presenting<br/>
@@ -96,7 +90,7 @@ Check out <a href="http://jays.net/wiki/ODLUG">our wiki</a>.
 
 </td><td valign="top">
 
-   <b>Tuesday Jun 11 2013, 7pm</b><br/>
+   <b>Tuesday Jul 9 2013, 7pm</b><br/>
    (2nd Tuesday of every month.)<br/>
 <!--
    UNO's Peter Kiewit Institute (PKI) Room 160<br/>
