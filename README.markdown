@@ -1,3 +1,7 @@
+# DEPRECATED
+
+Instead see http://omacode.org
+
 # Omaha Dynamic Language User Group (ODLUG)
 
 Welcome to the miscellaneous whatever repository. Homepage: http://odlug.org
